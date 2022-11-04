@@ -9,36 +9,36 @@ public class SignUp {
     Date dbirth;
     String sdepartment;
     Scanner in = new Scanner(System.in);
-    public void ask_firstName() {
+    void ask_firstName() {
         System.out.println("Please, give your first name")
         fname = in.nextLine();
 
     }
-    public void ask_lastName() {
+    void ask_lastName() {
          System.out.println("Please, give your last name")
         lname = in.nextLine();
     }
-    public void  ask_userName() {
+    void  ask_userName() {
         System.out.println("Please, give your username")
         uname = in.nextLine();
     } 
-    public void  ask_password() {
+    void  ask_password() {
         System.out.println("Please, create your password")
         password = in.nextLine();
     }
-    public void ask_email() {
+    void ask_email() {
         System.out.println("Please, give your email")
         mail = in.nextLine();
     }
-    public void ask_studentNumber() {
+    void ask_studentNumber() {
         System.out.println("Please, give your student number")
         snumber = in.nextLine();
     }
-    public void ask_date_of_Birth() {
+    void ask_date_of_Birth() {
         System.out.println("Please, give your date of birth")
         dbirth = in.nextLine();
     }
-    public void ask_studyDepartment() {
+    void ask_studyDepartment() {
         System.out.println("Please, give your study department")
         sdepartment=in.nextLine();
     }
