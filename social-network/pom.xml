@@ -7,6 +7,7 @@
   <groupId>com.dmst.president</groupId>
   <artifactId>social-network</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
   <name>social-network</name>
   <!-- FIXME change it to the project's website -->
