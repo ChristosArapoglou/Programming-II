@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Login {
     User connection = new User();
     String username;
