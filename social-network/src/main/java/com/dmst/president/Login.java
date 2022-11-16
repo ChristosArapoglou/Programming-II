@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Login {
-    User connection = new User();
+    User connection;
     String username;
     String password;
     Scanner in = new Scanner(System.in);
