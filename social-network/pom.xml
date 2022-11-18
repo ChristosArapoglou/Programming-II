@@ -7,6 +7,7 @@
   <groupId>com.dmst.president</groupId>
   <artifactId>social-network</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
   <name>social-network</name>
   <!-- FIXME change it to the project's website -->
@@ -25,6 +26,11 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.puppycrawl.tools</groupId>
+      <artifactId>checkstyle</artifactId>
+      <version>10.4</version>
+</dependency>
   </dependencies>
 
    <reporting>
@@ -41,12 +47,6 @@
               </reports>
             </reportSet>
           </reportSets>
-        </plugin>
-
-        <plugin> <!-- SpotBugs -->
-          <groupId>com.github.spotbugs</groupId>
-          <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.7.3.0</version>
         </plugin>
 
       </plugins>
@@ -95,6 +95,7 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+        
         <!-- checkstyle -->
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -104,7 +105,7 @@
               <configLocation>checkstyle.xml</configLocation>
               <encoding>UTF-8</encoding>
               <consoleOutput>true</consoleOutput>
-              <failsOnError>true</failsOnError>
+              <failsOnError>false</failsOnError>
               <linkXRef>false</linkXRef>
             </configuration>
             <executions>
@@ -117,8 +118,9 @@
               </execution>
             </executions>
           </plugin>
-        
       </plugins>
     </pluginManagement>
   </build>
+  
+  
 </project>
