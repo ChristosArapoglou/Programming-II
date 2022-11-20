@@ -123,7 +123,7 @@
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
           <version>4.7.2.1</version>
-          <executions>
+          <!--executions>
             <execution>
               <goals>
                 <goal>spotbugs</goal>
@@ -131,7 +131,7 @@
                 <goal>help</goal>
               </goals>
             </execution>
-          </executions>
+          </executions-->
               
     	    <dependencies>
    
