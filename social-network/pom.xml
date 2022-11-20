@@ -124,6 +124,16 @@
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
           <version>4.7.2.1</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>spotbugs</goal>
+                <goal>check</goal>
+                <goal>help</goal>
+              </goals>
+            </execution>
+          </executions>
+              
     	    <dependencies>
    
             <dependency>
