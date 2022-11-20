@@ -48,6 +48,12 @@
             </reportSet>
           </reportSets>
         </plugin>
+        
+        <plugin> <!--Spotbugs-->
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>4.7.3.0</version>
+        </plugin>
       </plugins>
 
     </reporting>
@@ -122,16 +128,7 @@
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.7.2.1</version>
-          <!--executions>
-            <execution>
-              <goals>
-                <goal>spotbugs</goal>
-                <goal>check</goal>
-                <goal>help</goal>
-              </goals>
-            </execution>
-          </executions-->
+          <version>4.7.3.0</version>
               
     	    <dependencies>
    
