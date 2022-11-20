@@ -49,7 +49,7 @@
           </reportSets>
         </plugin>
 
-      </plugins>
+     
      
       <!-- spotbugs -->
         <plugin>
@@ -75,6 +75,7 @@
             </dependency>
           </dependencies>
         </plugin>
+      </plugins>
 
     </reporting>
 
