@@ -139,7 +139,7 @@
           <configuration>
             <xmlOutput>true</xmlOutput>
             <xmlOutputDirectory>spotbugs</xmlOutputDirectory>
-          <configuration>
+          </configuration>
     	    <dependencies>
    
             <dependency>
