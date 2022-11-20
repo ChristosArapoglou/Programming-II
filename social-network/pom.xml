@@ -53,6 +53,13 @@
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
           <version>4.7.3.0</version>
+          <reportSets>
+            <reportSet>
+              <reports>
+                <report>spotbugs</report>
+              </reports>
+            </reportSet>
+          </reportSets>
         </plugin>
       </plugins>
 
