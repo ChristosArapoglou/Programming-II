@@ -52,7 +52,7 @@
         <plugin> <!--Spotbugs-->
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.7.3.0</version>
+          <version>3.1.10</version>
         </plugin>
       </plugins>
 
@@ -128,7 +128,7 @@
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.7.3.0</version>
+          <version>3.1.10</version>
           <configuration>
             <xmlOutput>true</xmlOutput>
             <xmlOutputDirectory>spotbugs/</xmlOutputDirectory>
@@ -138,7 +138,7 @@
             <dependency>
               <groupId>com.github.spotbugs</groupId>
               <artifactId>spotbugs</artifactId>
-              <version>4.7.3</version>
+              <version>3.1.10</version>
             </dependency>
           </dependencies>
         </plugin>
