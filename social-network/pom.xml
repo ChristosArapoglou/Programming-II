@@ -65,6 +65,13 @@
           <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
           <includeFilterFile>spotbugs-include.xml</includeFilterFile>  -->
           </configuration>
+          <dependencies>
+           <dependency> <!--Spotbugs-->
+             <groupId>com.github.spotbugs</groupId>
+             <artifactId>spotbugs</artifactId>
+             <version>4.7.3</version>
+           </dependency>
+          </dependencies>
      
         </plugin>
       </plugins>
