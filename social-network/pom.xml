@@ -31,12 +31,14 @@
       <artifactId>checkstyle</artifactId>
       <version>10.4</version>
     </dependency>
-     <dependency> <!--Spotbugs-->
-       <groupId>com.github.spotbugs</groupId>
-       <artifactId>spotbugs</artifactId>
-       <version>4.7.3</version>
-       <type>pom</type>
-     </dependency>
+    
+    <dependency>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-maven-plugin</artifactId>
+      <version>4.7.3.0</version>
+      <type>maven-plugin</type>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
    <reporting>
@@ -54,21 +56,14 @@
             </reportSet>
           </reportSets>
         </plugin>
-        
-        <plugin> <!--Spotbugs-->
-          <groupId>com.github.spotbugs</groupId>
-          <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.7.3</version>
-          <configuration>
-          <xmlOutput>true</xmlOutput>
-          <xmlOutputDirectory>target/site</xmlOutputDirectory>
-          <!-- Σε περίπτωση που θελήσουμε να κάνουμε filter το report
-          <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
-          <includeFilterFile>spotbugs-include.xml</includeFilterFile>  -->
-          </configuration>
-         
-     
+
+        <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>3.1.8</version>
         </plugin>
+        
+        
       </plugins>
 
     </reporting>
@@ -138,25 +133,20 @@
               </execution>
             </executions>
           </plugin>
-        
-        <!-- spotbugs -->
-        <!--Στην παρούσα φάση θα πρεπέ να τρέχει ξεχωριστά με mvn site μέσω του reporting, οπότε ανάλογα με το πως θα το χρησιμοποιήσουμε θα δούμε αν θα μείνει ή όχι
-            εντός του build-->
-        <plugin>
-          <groupId>com.github.spotbugs</groupId>
-          <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.7.3</version>
-           <dependencies>
-           <dependency> 
-             <groupId>com.github.spotbugs</groupId>
-             <artifactId>spotbugs</artifactId>
-             <version>4.7.3</version>
-             <type>pom</type>
-           </dependency>
-          </dependencies>
-        </plugin>
-        
-       
+
+          <plugin>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-maven-plugin</artifactId>
+            <version>4.7.2.1</version>
+            <dependencies>
+              <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
+              <dependency>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs</artifactId>
+                <version>4.7.3</version>
+              </dependency>
+            </dependencies>
+          </plugin>
      </plugins>
     </pluginManagement>
   </build>
