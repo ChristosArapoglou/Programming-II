@@ -36,7 +36,6 @@
        <artifactId>spotbugs</artifactId>
        <version>4.7.3</version>
        </dependency>
-     </dependencies>
   </dependencies>
 
    <reporting>
