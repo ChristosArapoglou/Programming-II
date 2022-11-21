@@ -52,7 +52,15 @@
         <plugin> <!--Spotbugs-->
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>3.1.10</version>
+          <version>4.7.3.0</version>
+          <configuration>
+          <xmlOutput>true</xmlOutput>
+          <xmlOutputDirectory>target/site</xmlOutputDirectory>
+          <!-- Σε περίπτωση που θελήσουμε να κάνουμε filter το report
+          <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
+          <includeFilterFile>spotbugs-include.xml</includeFilterFile>  -->
+          </configuration>
+     
         </plugin>
       </plugins>
 
@@ -125,17 +133,19 @@
           </plugin>
         
         <!-- spotbugs -->
+        <!--Στην παρούσα φάση θα πρεπέ να τρέχει ξεχωριστά με mvn site μέσω του reporting, οπότε ανάλογα με το πως θα το χρησιμοποιήσουμε θα δούμε αν θα μείνει ή όχι
+            εντός του build-->
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>3.1.10</version>
+          <version>4.7.3.0</version>
           
     	    <dependencies>
    
             <dependency>
               <groupId>com.github.spotbugs</groupId>
               <artifactId>spotbugs</artifactId>
-              <version>3.1.10</version>
+              <version>4.7.3.0</version>
             </dependency>
           </dependencies>
         </plugin>
