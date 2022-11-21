@@ -34,7 +34,8 @@
      <dependency> <!--Spotbugs-->
        <groupId>com.github.spotbugs</groupId>
        <artifactId>spotbugs</artifactId>
-       <version>4.5.3</version>
+       <version>4.7.3</version>
+       <type>pom</type>
      </dependency>
   </dependencies>
 
@@ -57,7 +58,7 @@
         <plugin> <!--Spotbugs-->
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.5.3</version>
+          <version>4.7.3</version>
           <configuration>
           <xmlOutput>true</xmlOutput>
           <xmlOutputDirectory>target/site</xmlOutputDirectory>
@@ -145,12 +146,12 @@
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
           <version>4.7.3</version>
-          <!-- Ξέρω ότι είναι περιττό γιατί το χω δηλώσει ήδη αλλά δεν βγάζω άκρη οπότε το αφήνω μέσα και κάνε ό,τι θες-->
            <dependencies>
            <dependency> 
              <groupId>com.github.spotbugs</groupId>
              <artifactId>spotbugs</artifactId>
-             <version>4.5.3</version>
+             <version>4.7.3</version>
+             <type>pom</type>
            </dependency>
           </dependencies>
         </plugin>
