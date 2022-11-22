@@ -92,33 +92,33 @@ public class SignUpFrame extends JFrame{
         //Mail name label
         maillabel= new JLabel("Add your mail.");
         Dimension size32 = maillabel.getPreferredSize();
-        maillabel.setBounds(10, 80, size32.width, size32.height);
+        maillabel.setBounds(10, 140, size32.width, size32.height);
         
         //Serial number label
         serialnumberlabel= new JLabel("Add your serial number.");
         Dimension size33 = serialnumberlabel.getPreferredSize();
-        serialnumberlabel.setBounds(10, 110, size33.width, size33.height);
+        serialnumberlabel.setBounds(10, 170, size33.width, size33.height);
 
         //Date of Birth label
         doblabel= new JLabel("Add your birth date.");
         Dimension size34 = doblabel.getPreferredSize();
-        doblabel.setBounds(10, 140, size34.width, size34.height);
+        doblabel.setBounds(10, 200, size34.width, size34.height);
         
         //Department's serial number label
         sdepartmentlabel= new JLabel("Add your department's serial number.");
         Dimension size35 = sdepartmentlabel.getPreferredSize();
-        sdepartmentlabel.setBounds(10, 170, size35.width, size35.height);
+        sdepartmentlabel.setBounds(10, 230, size35.width, size35.height);
         
         //User name label
         unamelabel= new JLabel("Add your username.");
         Dimension size36 = unamelabel.getPreferredSize();
-        unamelabel.setBounds(10, 200, size36.width, size36.height);
+        unamelabel.setBounds(10, 80, size36.width, size36.height);
         
 
         //Password label
         passwordlabel= new JLabel("Add your password.");
         Dimension size37 = passwordlabel.getPreferredSize();
-        passwordlabel.setBounds(10, 230, size37.width, size37.height);
+        passwordlabel.setBounds(10, 110, size37.width, size37.height);
 
         //Creating a button
         signupbutton= new JButton("Sign Up");
@@ -158,7 +158,7 @@ public class SignUpFrame extends JFrame{
         password.addActionListener(handler);
         dob.addActionListener(handler);
         sdepartment.addActionListener(handler);
-
+        signupbutton.addActionListener(handler);
 
     }
 
@@ -167,38 +167,39 @@ public class SignUpFrame extends JFrame{
         @Override
         public void actionPerformed(ActionEvent handler){
           
-          String string; 
+        JTextField[] arr = {fname, lname, mail, serialnumber, dob, sdepartment, uname, password }; 
           
-          if(handler.getSource()== fname){
-            string = fname.getText();
-            
-          }else if (handler.getSource()==lname){
-            string = lname.getText();
-           
-          }else if(handler.getSource()==mail){
-            string= mail.getText();
-            
-        }else if (handler.getSource()==serialnumber){
-            string = serialnumber.getText();
           
-        }else if (handler.getSource()==dob ){
-            string = dob.getText();
-            
-        }else if(handler.getSource()== sdepartment){
-            string = sdepartment.getText();
-          
-        }else if (handler.getSource()== uname){
-            string = uname.getText();
-          
-        }else if (handler.getSource()==password){
-            char[] chars = password.getPassword();
-            string = String.valueOf(chars);
-            JOptionPane.showMessageDialog(null, string,"Password", JOptionPane.ERROR_MESSAGE);
-            
+        for(int l=0; l<=arr.length; l++){
+            if(handler.getSource()== signupbutton||handler.getSource()==arr[l]){
+                
+                String string1= mail.getText();
+                String string2= dob.getText();
+                if(!string2.isEmpty()){
+                    if(Validate.valdob(string2)==false){
+                        JOptionPane.showMessageDialog(null, "Please enter a valid date of birth.","Date of Birth", JOptionPane.ERROR_MESSAGE);
+                     }
+                }
+                
+                if(!string1.isEmpty()){
+                    if(StringCheck.checkstring(string1)==false){
+                        JOptionPane.showMessageDialog(null, "Please enter a valid e-mail.","E-mail", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                
+                String[] objectarray = {String.valueOf(fname.getText()),String.valueOf(lname.getText()), String.valueOf(mail.getText()), String.valueOf(serialnumber.getText()), String.valueOf(dob.getText()), String.valueOf(sdepartment.getText()), String.valueOf(uname.getText()), String.valueOf(password.getPassword())};
+                
+                
+                int x= TestingArray.arraytest(objectarray);
+                if(x!=0){
+                    JOptionPane.showMessageDialog(null, "You have not filled " +x + " fields.","Blank fields.", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                break;
+           }
         }
         
-       
-      
+        
 }
 
 }
