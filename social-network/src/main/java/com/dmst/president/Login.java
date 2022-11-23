@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Login {
-    User connection;
+    User connection = new User();
     String username;
     String password;
     Scanner in = new Scanner(System.in);
@@ -14,7 +14,7 @@ public class Login {
         password=in.nextLine();
     }
     void connectornot() {
-        if (connection.verify() = true) {
+        if (connection.verify(username, password)) {
             System.out.println("Correct credentials, have a nice experience in our web");
         }
         else {

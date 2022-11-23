@@ -82,4 +82,7 @@ class User {
 		this.signUpDate = new Date();
 	}
 	
+	User() {
+		
+	}
 }
