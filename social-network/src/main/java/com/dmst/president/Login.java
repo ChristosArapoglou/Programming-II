@@ -1,4 +1,5 @@
-﻿import java.util.Scanner;
+
+import java.util.Scanner;
 
  /*The class Login ask from user to enter his/her credentials and accordingly to that,
     he/she can connect in our website */
