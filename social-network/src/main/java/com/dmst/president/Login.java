@@ -42,7 +42,7 @@ public class Login {
             }
 
         }
-        while (stop == true);
+        while (stop);
     }
 }
 
