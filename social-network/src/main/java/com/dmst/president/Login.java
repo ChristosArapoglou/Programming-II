@@ -25,7 +25,7 @@ public class Login {
 
             if (connection.verify(username, password)) {
                 System.out.println("Correct credentials, have a nice experience in our web");
-                
+                stop = true;
                 /*edo prepei na anoigei to parathyro ths efarmoghs */
                 
             }   
