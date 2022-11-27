@@ -22,7 +22,7 @@ public class Login {
         System.out.println("Please, give your password");
         password = in .nextLine();
     }
-    protected boolean stop = false;
+    private boolean stop = false;
     /** The method connectornot verifies user's credentials
     *via User class and prints messages
     about about the results of verification */
@@ -42,7 +42,7 @@ public class Login {
             }
 
         }
-        while (stop = true);
+        while (stop == true);
     }
 }
 
