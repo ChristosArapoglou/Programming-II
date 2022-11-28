@@ -25,7 +25,7 @@ public class Login {
     private boolean stop = false;
     /** The method connectornot verifies user's credentials
     *via User class and prints messages
-    about about the results of verification */
+    about the results of verification */
     void connectornot() {
         do {
             if (connection.verify(username, password)) {
