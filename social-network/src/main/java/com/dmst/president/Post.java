@@ -1,4 +1,4 @@
-package com.dmst.president;  // TODO: figure out how compiling with packages works
+package com.dmst.president;
 
 import java.sql.Date;
 import java.sql.Time;
