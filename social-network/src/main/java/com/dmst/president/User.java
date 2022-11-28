@@ -1,3 +1,5 @@
+package com.dmst.president;
+
 import java.util.Date;
 
 class User {

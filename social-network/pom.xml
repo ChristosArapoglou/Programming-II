@@ -9,7 +9,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>social-network</name>
+  <name>UniPost</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
