@@ -37,7 +37,7 @@ public class SignUp {
     }
     void ask_date_of_Birth() {
         System.out.println("Please, give your date of birth");
-        dbirth = in.nextLine();
+        //dbirth = in.nextLine();
     }
     void ask_studyDepartment() {
         System.out.println("Please, give your study department");
