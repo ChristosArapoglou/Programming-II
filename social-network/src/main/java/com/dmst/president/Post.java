@@ -35,10 +35,10 @@ public class Post {
         }
         String s = String.format("--------------------------------"+
                     "--------------------------------------\n"+
-                    "User %s posted:%40s\n\n%s\n\n"+
+                    "User %s posted:%40s\n\n%s\n%70s\n"+
                     "--------------------------------------"+
                     "--------------------------------"
-                ,creator, strDate, sb.toString());
+                ,creator, strDate, sb.toString(), "Likes:" +likes);
         return s;
     
     
