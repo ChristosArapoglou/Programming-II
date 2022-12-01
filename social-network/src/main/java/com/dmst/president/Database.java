@@ -3,9 +3,9 @@ import java.sql.*;
 class Database {
     static Connection initiateConnection() {
         // Initiating a connection with our MS SQL Server database.
-        String url = "jdbc:sqlserver://CHRIS\\MSSQLSERVER01;"
-        + "databaseName=Unipost;"
-        + "user=user;password=user;trustServerCertificate=true";
+        String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr;"
+        + "databaseName=DB48;"
+        + "user=G548;password=9398v4;";
         Connection dbcon = null;
 		/* Handling possible unwanted exceptions,
 		in case the connection cannot occur. */
@@ -24,7 +24,7 @@ class Database {
 		}
 		return dbcon;
 	}
-	static void selectQuery(final Connection dbcon,
+	static void selectUser(final Connection dbcon,
 			final String columnName1, final String columnName2) {
 		/* Initiating a SQL Select statement (searching for data
 		in the database and displaying them to the user). */
@@ -33,7 +33,7 @@ class Database {
 		try {
 			stmt = dbcon.createStatement();
 			String query = "SELECT " + columnName1
-					+ ", " + columnName2 + " FROM Users";
+					+ ", " + columnName2 + " FROM JUsers";
 			//SQL Select Query structure.
 			ResultSet rs = stmt.executeQuery(query);
 			System.out.println(query);
@@ -48,7 +48,7 @@ class Database {
 			e.printStackTrace();
 		}
 	}
-	static void insertQuery(final Connection dbcon, final String sn,
+	static void insertUser(final Connection dbcon, final String sn,
         final String firstName, final String lastName, final String username,
         final String password, final String stDept, final String dob) {
 		/* Initiating a SQL Insert statement (inserting new data
@@ -58,7 +58,7 @@ class Database {
 		try {
 			stmt = dbcon.createStatement();
 			//SQL Insert Query structure.
-			String query = "INSERT INTO Users VALUES('" + sn
+			String query = "INSERT INTO JUsers VALUES('" + sn
 			+ "', '" + firstName + "', '" + lastName + "', '"
 		    + username + "', '" + password + "', '" + stDept
 		    + "', '" + dob + "')";
