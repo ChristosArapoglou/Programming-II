@@ -50,7 +50,7 @@ class Database {
 	}
 	static void insertUser(final Connection dbcon, final String sn,
         final String firstName, final String lastName, final String username,
-        final String password, final String stDept, final String dob) {
+        final String password, final String stDept, final String dob, final String email) {
 		/* Initiating a SQL Insert statement (inserting new data
 		   in the database).*/
 		Statement stmt;
@@ -61,7 +61,7 @@ class Database {
 			String query = "INSERT INTO JUsers VALUES('" + sn
 			+ "', '" + firstName + "', '" + lastName + "', '"
 		    + username + "', '" + password + "', '" + stDept
-		    + "', '" + dob + "')";
+		    + "', '" + dob + "', '" + email + "')";
 			/*The "execute" method returns a boolean value
 			which is stored in a boolean variable. */
 			stmt.execute(query);
