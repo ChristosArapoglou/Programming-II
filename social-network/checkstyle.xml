@@ -150,7 +150,10 @@
     <!-- See https://checkstyle.org/config_coding.html -->
     <module name="EmptyStatement"/>
     <module name="EqualsHashCode"/>
-    <module name="HiddenField"/>
+    <!--   <module name="HiddenField">
+      <property name="ignoreSetter" value="true" />    Modifies the HiddenField check to avoid errors from setters and constructors
+      <property name="ignoreConstructorParameter" value="true" />
+    </module>   -->
     <module name="IllegalInstantiation"/>
     <module name="InnerAssignment"/>
     <module name="MagicNumber"/>
