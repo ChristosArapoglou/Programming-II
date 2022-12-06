@@ -68,10 +68,11 @@ public final class Post {
          * exceeds the 70 character limit, then a StringBuffer
          * is used to insert an escape character. */
 
+        final int lineLimit = 70;
         final StringBuffer sb = new StringBuffer(text);
         final int lines = sb.length() / 70;
         for (int i = 1; i <= lines; i++) {
-            sb.insert(i * 70, "\n");
+            sb.insert(i * lineLimit, "\n");
         }
         System.out.println(String.format("--------------------------------"
                     + "--------------------------------------\n"
@@ -83,30 +84,33 @@ public final class Post {
     }
 
     public void react() {
-    /* This method is used to enable user-post interaction.
-     * The user states whether or not he likes the post he
-     * just saw. */
-        final Scanner in = new Scanner(System.in);
-        String ans;
-        do {
-            System.out.println("Do you like this post? Press yes"
-                               + " or no (Y/N)");
-            ans = in.nextLine();
-            if (((ans.equals("Y")) || (ans.equals("y"))
-                || (ans.equals("N")) || (ans.equals("n"))) == false) {
-                    System.out.println("Wrong answer");
-            }
-        } while (((ans.equals("Y")) || (ans.equals("y"))
-                 || (ans.equals("N")) || (ans.equals("n"))) == false);
+        /* This method is used to enable user-post interaction.
+         * The user states whether or not he likes the post he
+         * just saw. */
+            final Scanner in = new Scanner(System.in);
+            String ans;
+            do {
+                System.out.println("Do you like this post? Press yes"
+                                   + " or no (Y/N)");
+                ans = in.nextLine();
+                /* the answer is converted to lower case,
+                 * then checked if it meets the criteria */
 
-        if ((ans.equals("Y")) || (ans.equals("y"))) {
-            likes++;
-            System.out.println("Answer recorded successfully");
-        } else {
-            System.out.println("Answer recorded successfully");
+                if (!(ans.toLowerCase().equals("y")
+                        || ans.toLowerCase().equals("n"))) {
+                        System.out.println("Wrong answer");
+                }
+            } while (!(ans.toLowerCase().equals("y")
+                        || (ans.toLowerCase().equals("n"))));
+
+            if ((ans.equals("Y")) || (ans.equals("y"))) {
+                likes++;
+                System.out.println("Answer recorded successfully");
+            } else {
+                System.out.println("Answer recorded successfully");
+            }
+        // This method could be much simpler if an exception is thrown.
         }
-    // This method could be much simpler if an exception is thrown.
-    }
 
 
     public static void main(final String[] args) {  // dummy main :)
