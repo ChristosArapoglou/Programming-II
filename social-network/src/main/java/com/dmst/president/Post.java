@@ -1,7 +1,4 @@
-
-
 import java.text.DateFormat;
-//import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -12,10 +9,9 @@ public final class Post {
      * to keep the date as a date type(for SQL) */
     private Date creationDate;
     private final String strDate;
-    private int likes = 0;
+    private int likes;
     private String text;
     private final String creator; // User's username
-
 
     /* Getters are needed to test the program in this particular
      * stage. They might be unnecessary for the final implementation.
@@ -49,7 +45,7 @@ public final class Post {
     }
 
 
-    public Post(final String text, final String creator) {
+    public Post(final String creator) {
         // Current date is allocated on variable creationDate type Date
         final Date creationDate = new Date();
         // The preffered format is implemented
@@ -57,7 +53,9 @@ public final class Post {
                                 "dd-MM-yyyy hh:mm a");
         // Variable creationDate is converted to String using the format method
         this.strDate = dateFormat.format(creationDate);
-        this.text = text;
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter your thoughts :");
+        this.text = in.nextLine();
         this.creator = creator;
     }
 
@@ -87,41 +85,63 @@ public final class Post {
         /* This method is used to enable user-post interaction.
          * The user states whether or not he likes the post he
          * just saw. */
-            final Scanner in = new Scanner(System.in);
-            String ans;
-            do {
-                System.out.println("Do you like this post? Press yes"
-                                   + " or no (Y/N)");
-                ans = in.nextLine();
-                /* the answer is converted to lower case,
-                 * then checked if it meets the criteria */
-
-                if (!(ans.toLowerCase().equals("y")
-                        || ans.toLowerCase().equals("n"))) {
-                        System.out.println("Wrong answer");
-                }
-            } while (!(ans.toLowerCase().equals("y")
-                        || (ans.toLowerCase().equals("n"))));
-
-            if ((ans.equals("Y")) || (ans.equals("y"))) {
-                likes++;
-                System.out.println("Answer recorded successfully");
-            } else {
-                System.out.println("Answer recorded successfully");
-            }
-        // This method could be much simpler if an exception is thrown.
-        }
-
-
-    public static void main(final String[] args) {  // dummy main :)
         final Scanner in = new Scanner(System.in);
-        System.out.println("Enter your thoughts :");
-        final Post p = new Post(in.nextLine(), "Alexis Mardas");
+        String ans;
+        do {
+            System.out.println("Do you like this post? Press yes"
+                                + " or no (Y/N)");
+            ans = in.nextLine();
+            /* the answer is converted to lower case,
+                * then checked if it meets the criteria */
+
+            if (!(ans.toLowerCase().equals("y")
+                    || ans.toLowerCase().equals("n"))) {
+                    System.out.println("Wrong answer");
+            }
+        } while (!(ans.toLowerCase().equals("y")
+                    || (ans.toLowerCase().equals("n"))));
+
+        if ((ans.equals("Y")) || (ans.equals("y"))) {
+            likes++;
+            System.out.println("Answer recorded successfully");
+        } else {
+            System.out.println("Answer recorded successfully");
+        }
+        // This method could be much simpler if an exception is thrown.
+    }
+
+    public static void displayFullPost(Post p) {
+
         p.displayPost(p.getText(), p.getCreator(),
-                          p.getStrDate(), p.getLikes());
+                            p.getStrDate(), p.getLikes());
         p.react();
+        try {
+            Thread.sleep(3500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        clearConsole();
         p.displayPost(p.getText(), p.getCreator(),
-                         p.getStrDate(), p.getLikes());
+                            p.getStrDate(), p.getLikes());
 
     }
+
+    public static void clearConsole() {
+        final String os = System.getProperty("os.name");
+        try {
+            if (os.contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                Runtime.getRuntime().exec("clear");
+            }
+        } catch (Exception e) {
+            System.err.println("error");
+        }
+    }
+    public static void main(final String[] args) {  // dummy main :)
+        Post p = new Post("Alexis Mardas");
+        displayFullPost(p);
+
+    }
+
 }
