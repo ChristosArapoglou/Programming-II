@@ -1,3 +1,5 @@
+package com.dmst.president;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -16,24 +18,7 @@ public final class Post {
     /* Getters are needed to test the program in this particular
      * stage. They might be unnecessary for the final implementation.
      */
-    public String getStrDate() {
-        return strDate;
-    }
-
-
-    public int getLikes() {
-        return likes;
-    }
-
-
-    public String getText() {
-        return text;
-    }
-
-
-    public String getCreator() {
-        return creator;
-    }
+    final Scanner in = new Scanner(System.in);
 
 
     public void setText(final String text) {
@@ -53,15 +38,13 @@ public final class Post {
                                 "dd-MM-yyyy hh:mm a");
         // Variable creationDate is converted to String using the format method
         this.strDate = dateFormat.format(creationDate);
-        Scanner in = new Scanner(System.in);
         System.out.println("Enter your thoughts :");
         this.text = in.nextLine();
         this.creator = creator;
     }
 
 
-    public void displayPost(final String text, final String creator,
-                                final String strDate, final int likes) {
+    public void displayPost() {
         /* This method is used to display a post.If the post
          * exceeds the 70 character limit, then a StringBuffer
          * is used to insert an escape character. */
@@ -81,49 +64,13 @@ public final class Post {
 
     }
 
-    public void react() {
-        /* This method is used to enable user-post interaction.
-         * The user states whether or not he likes the post he
-         * just saw. */
-        final Scanner in = new Scanner(System.in);
-        String ans;
-        do {
-            System.out.println("Do you like this post? Press yes"
-                                + " or no (Y/N)");
-            ans = in.nextLine();
-            /* the answer is converted to lower case,
-                * then checked if it meets the criteria */
 
-            if (!(ans.toLowerCase().equals("y")
-                    || ans.toLowerCase().equals("n"))) {
-                    System.out.println("Wrong answer");
-            }
-        } while (!(ans.toLowerCase().equals("y")
-                    || (ans.toLowerCase().equals("n"))));
-
-        if ((ans.equals("Y")) || (ans.equals("y"))) {
-            likes++;
-            System.out.println("Answer recorded successfully");
-        } else {
-            System.out.println("Answer recorded successfully");
-        }
-        // This method could be much simpler if an exception is thrown.
-    }
-
-    public static void displayFullPost(final Post p) {
-
-        final int sleepDuration = 3500;
-        p.displayPost(p.getText(), p.getCreator(),
-                            p.getStrDate(), p.getLikes());
-        p.react();
-        try {
-            Thread.sleep(sleepDuration);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+    public void displayFullPost() {
+        displayPost();
+        System.out.println();
+        react();
         clearConsole();
-        p.displayPost(p.getText(), p.getCreator(),
-                            p.getStrDate(), p.getLikes());
+        displayPost();
 
     }
 
@@ -139,10 +86,40 @@ public final class Post {
             System.err.println("error");
         }
     }
-    public static void main(final String[] args) {  // dummy main :)
-        Post p = new Post("Alexis Mardas");
-        displayFullPost(p);
 
+
+    public void react() {
+        /* This method is used to enable user-post interaction.
+         * The user states whether or not he likes the post he
+         * just saw. */
+        
+        String ans;
+        do {
+            System.out.println("Press <L> to like this post or <N> to move to the next Post");
+            ans = in.nextLine();
+            /* the answer is converted to lower case,
+                * then checked if it meets the criteria */
+
+            if (!(ans.toLowerCase().equals("l")
+                    || ans.toLowerCase().equals("n"))) {
+                    System.out.println("Wrong answer");
+            }
+        } while (!(ans.toLowerCase().equals("l")
+                    || (ans.toLowerCase().equals("n"))));
+
+        if (ans.toLowerCase().equals("l")) {
+            likes++;
+            System.out.println("Answer recorded successfully");
+            delay(2500);
+        }
+    }   
+
+    public static void delay(long delayDuration) {
+        try {
+            Thread.sleep(delayDuration);
+        } catch (InterruptedException e) {
+            System.err.println("The operation was interrupted");
+        }
     }
 
 }
