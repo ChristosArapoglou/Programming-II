@@ -110,13 +110,14 @@ public final class Post {
         // This method could be much simpler if an exception is thrown.
     }
 
-    public static void displayFullPost(Post p) {
+    public static void displayFullPost(final Post p) {
 
+        final int sleepDuration = 3500;
         p.displayPost(p.getText(), p.getCreator(),
                             p.getStrDate(), p.getLikes());
         p.react();
         try {
-            Thread.sleep(3500);
+            Thread.sleep(sleepDuration);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
