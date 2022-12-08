@@ -78,7 +78,8 @@ public final class Post {
         final String os = System.getProperty("os.name");
         try {
             if (os.contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                new ProcessBuilder("cmd", "/c", "cls")
+                .inheritIO().start().waitFor();
             } else {
                 Runtime.getRuntime().exec("clear");
             }
@@ -92,10 +93,11 @@ public final class Post {
         /* This method is used to enable user-post interaction.
          * The user states whether or not he likes the post he
          * just saw. */
-        
+
         String ans;
         do {
-            System.out.println("Press <L> to like this post or <N> to move to the next Post");
+            System.out.println(
+                "Press <L> to like this post or <N> to move to the next Post");
             ans = in.nextLine();
             /* the answer is converted to lower case,
                 * then checked if it meets the criteria */
@@ -112,9 +114,9 @@ public final class Post {
             System.out.println("Answer recorded successfully");
             delay(2500);
         }
-    }   
+    }
 
-    public static void delay(long delayDuration) {
+    public static void delay(final long delayDuration) {
         try {
             Thread.sleep(delayDuration);
         } catch (InterruptedException e) {
