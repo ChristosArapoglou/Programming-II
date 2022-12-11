@@ -1,3 +1,5 @@
+package com.dmst.president;
+
 import java.util.Scanner;
 
 /**The class Login ask from user to enter his/her credentials,

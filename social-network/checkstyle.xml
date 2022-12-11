@@ -61,6 +61,7 @@
   <module name="FileLength"/>
   <module name="LineLength">
     <property name="fileExtensions" value="java"/>
+    <property name="max" value="90"/>
   </module>
 
   <!-- Checks for whitespace                               -->
@@ -150,7 +151,10 @@
     <!-- See https://checkstyle.org/config_coding.html -->
     <module name="EmptyStatement"/>
     <module name="EqualsHashCode"/>
-    <module name="HiddenField"/>
+    <!--   <module name="HiddenField">
+      <property name="ignoreSetter" value="true" />    Modifies the HiddenField check to avoid errors from setters and constructors
+      <property name="ignoreConstructorParameter" value="true" />
+    </module>   -->
     <module name="IllegalInstantiation"/>
     <module name="InnerAssignment"/>
     <module name="MagicNumber"/>
@@ -170,7 +174,9 @@
     <!-- Miscellaneous other checks.                   -->
     <!-- See https://checkstyle.org/config_misc.html -->
     <module name="ArrayTypeStyle"/>
-    <module name="FinalParameters"/>
+    <module name="FinalParameters">
+      <property name="ignorePrimitiveTypes" value="true"/>
+    </module>
     <module name="TodoComment"/>
     <module name="UpperEll"/>
 
