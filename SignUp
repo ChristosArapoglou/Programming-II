@@ -2,8 +2,8 @@ import java.util.Scanner;
 import java.util.GregorianCalendar;
 
 public class SignUp {
-	/*declaration of variables*/
-	String firstName;
+    /*declaration of variables*/
+    String firstName;
     String lastName;
     String username;
     String password;
