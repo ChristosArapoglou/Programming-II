@@ -1,11 +1,13 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 class Database {
     static Connection initiateConnection() {
         // Initiating a connection with our MS SQL Server database.
-        String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr;"
+        String url = "jdbc:sqlserver://CHRIS\\MSSQLSERVER01;"
         + "databaseName=DB48;"
-        + "user=G548;password=9398v4;";
+        + "user=G548;password=9398v4;trustServerCertificate=true";
         Connection dbcon = null;
 		/* Handling possible unwanted exceptions,
 		in case the connection cannot occur. */
@@ -23,61 +25,5 @@ class Database {
 			System.out.println(e.getMessage());
 		}
 		return dbcon;
-	}
-	static void selectUser(final Connection dbcon,
-			final String columnName1, final String columnName2) {
-		/* Initiating a SQL Select statement (searching for data
-		in the database and displaying them to the user). */
-		Statement stmt;
-		//Creating a SQL Select Query, handling unwanted exceptions.
-		try {
-			stmt = dbcon.createStatement();
-			String query = "SELECT " + columnName1
-					+ ", " + columnName2 + " FROM JUsers";
-			//SQL Select Query structure.
-			ResultSet rs = stmt.executeQuery(query);
-			System.out.println(query);
-			//Displaying the SQL Query results.
-		 	while (rs.next()) {
-		 		System.out.print(rs.getString(columnName1) + " - ");
-		 		System.out.println(rs.getString(columnName2));
-		 	}
-		} catch (SQLException e) {
-			System.out.print("SQLException: ");
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-	}
-	static void insertUser(final Connection dbcon, final String sn,
-        final String firstName, final String lastName, final String username,
-        final String password, final String stDept, final String dob, final String email) {
-		/* Initiating a SQL Insert statement (inserting new data
-		   in the database).*/
-		Statement stmt;
-		boolean flag = false;
-		try {
-			stmt = dbcon.createStatement();
-			//SQL Insert Query structure.
-			String query = "INSERT INTO JUsers VALUES('" + sn
-			+ "', '" + firstName + "', '" + lastName + "', '"
-		    + username + "', '" + password + "', '" + stDept
-		    + "', '" + dob + "', '" + email + "')";
-			/*The "execute" method returns a boolean value
-			which is stored in a boolean variable. */
-			stmt.execute(query);
-			flag = true;
-			System.out.println(query);
-		} catch (SQLException e) {
-			System.out.print("SQLException: ");
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		/* Checking whether the data insertion was successful or not,
-		based on the "execute" method return statement. */
-		if (flag) {
-			System.out.println("Successful data insertion! :)");
-		} else {
-			System.out.println("Unsuccessful data insertion... :(");
-		}
 	}
 }
