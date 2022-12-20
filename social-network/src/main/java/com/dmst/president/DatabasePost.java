@@ -11,11 +11,12 @@ public class DatabasePost {
 		try {
 			stmt = dbcon.createStatement();
             //The query executed is fixed
-			String query = "SELECT U.username, P.text,"
-                  +"P.dateOfCreation, P.likes"
-				  + " FROM JPost as P, JUsers as U"
-                  +"WHERE U.AM = P.userAM;";
+			String query = "SELECT username, text,"
+                  +"dateOfCreation, likes"
+				  + " FROM JPost, JUsers"
+                  +" WHERE AM = userAM";
 			//SQL Select Query structure.
+			System.out.println(query);
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 			 	Post.displayFullPost(rs.getString("text"), rs.getString("username")
