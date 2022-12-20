@@ -3,24 +3,27 @@ package com.dmst.president;
 import java.sql.*;
 
 public class DatabasePost {
-	static void selectPost(final Connection dbcon,
-		final String columnName1, final String columnName2) {
+	static void displayAllPosts(final Connection dbcon) {
 		/* Initiating a SQL Select statement (searching for data
 		in the database and displaying them to the user). */
 		Statement stmt;
 		//Creating a SQL Select Query, handling unwanted exceptions.
 		try {
 			stmt = dbcon.createStatement();
-			String query = "SELECT " + columnName1
-				+ ", " + columnName2 + " FROM JPost";
+            //The query executed is fixed
+			String query = "SELECT U.username, P.text,"
+                  +"P.dateOfCreation, P.likes"
+				  + " FROM JPost as P, JUsers as U"
+                  +"WHERE U.AM = P.userAM;";
 			//SQL Select Query structure.
 			ResultSet rs = stmt.executeQuery(query);
-			System.out.println(query);
-			//Displaying the SQL Query results.
-			 while (rs.next()) {
-			 	System.out.print(rs.getString(columnName1) + " - ");
-			 	System.out.println(rs.getString(columnName2));
-			 }
+			while (rs.next()) {
+			 	Post.displayFullPost(rs.getString("text"), rs.getString("username")
+                    , rs.getString("dateOfCreation"), rs.getInt("likes"));
+			 	
+
+			 }  
+             
 		} catch (SQLException e) {
 			System.out.print("SQLException: ");
 			System.out.println(e.getMessage());
