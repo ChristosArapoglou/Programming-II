@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
+import java.sql.Connection;
 
 public final class Post {
 
@@ -68,10 +69,14 @@ public final class Post {
 
     public static void displayFullPost(String text, String creator
     , String strDate, int likes) {
+    /* With the particular current implementation this method
+     * has no reason to exist. All of it's components are 
+     * used separately inside DatabasePost.displayAllPosts
+     */
         displayPost(text,creator, strDate,likes);
         System.out.println();
-        react();
-        clearConsole();
+        //react();
+        //clearConsole();
         
 
     }
@@ -91,10 +96,12 @@ public final class Post {
     }
 
 
-    public static void react() {
+    public static void react(final Connection dbcon, final int postNumber) {
         /* This method is used to enable user-post interaction.
          * The user states whether or not he likes the post he
-         * just saw. */
+         * just saw. The parameters are only needed to call the
+         * DatabasePost.incrementLikes method.
+         */
 
         String ans;
         do {
@@ -119,9 +126,9 @@ public final class Post {
             * If we try to increment the instance variable likes a problem 
             * occurs, because this method is static.As a matter of fact 
             * almost all of this class' methods should be static
-            * since we don't want to create a new post in order to access them
-
-            */
+            * since we don't want to create a new post in order to access them.
+           */
+            DatabasePost.incrementLikes(dbcon, postNumber);
             System.out.println("Answer recorded successfully");
             delay(2500);
         }
