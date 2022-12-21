@@ -7,9 +7,9 @@ import java.sql.SQLException;
 class Database {
     static Connection initiateConnection() {
         // Initiating a connection with our MS SQL Server database.
-        String url = "jdbc:sqlserver://CHRIS\\MSSQLSERVER01;"
+        String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr;"
         + "databaseName=DB48;"
-        + "user=G548;password=9398v4;trustServerCertificate=true";
+        + "user=G548;password=9398v4;";
         Connection dbcon = null;
 		/* Handling possible unwanted exceptions,
 		in case the connection cannot occur. */

@@ -18,7 +18,7 @@ public final class Post {
     /* Getters are needed to test the program in this particular
      * stage. They might be unnecessary for the final implementation.
      */
-    final Scanner in = new Scanner(System.in);
+    final static Scanner in = new Scanner(System.in);
 
 
     public void setText(final String text) {
@@ -44,7 +44,8 @@ public final class Post {
     }
 
 
-    public void displayPost() {
+    public static void displayPost(String text, String creator
+        , String strDate, int likes) {
         /* This method is used to display a post.If the post
          * exceeds the 70 character limit, then a StringBuffer
          * is used to insert an escape character. */
@@ -65,12 +66,13 @@ public final class Post {
     }
 
 
-    public void displayFullPost() {
-        displayPost();
+    public static void displayFullPost(String text, String creator
+    , String strDate, int likes) {
+        displayPost(text,creator, strDate,likes);
         System.out.println();
         react();
         clearConsole();
-        displayPost();
+        
 
     }
 
@@ -89,7 +91,7 @@ public final class Post {
     }
 
 
-    public void react() {
+    public static void react() {
         /* This method is used to enable user-post interaction.
          * The user states whether or not he likes the post he
          * just saw. */
@@ -110,7 +112,16 @@ public final class Post {
                     || (ans.toLowerCase().equals("n"))));
 
         if (ans.toLowerCase().equals("l")) {
-            likes++;
+           // likes++;
+           /* Since we are using a database to store data
+            * we dont have to increment the instance variable likes
+            * instead we should update table JPosts directly.
+            * If we try to increment the instance variable likes a problem 
+            * occurs, because this method is static.As a matter of fact 
+            * almost all of this class' methods should be static
+            * since we don't want to create a new post in order to access them
+
+            */
             System.out.println("Answer recorded successfully");
             delay(2500);
         }
