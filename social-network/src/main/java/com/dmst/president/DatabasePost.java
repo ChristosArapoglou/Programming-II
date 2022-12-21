@@ -11,15 +11,18 @@ public class DatabasePost {
 		try {
 			stmt = dbcon.createStatement();
             //The query executed is fixed
-			String query = "SELECT username, text,"
+			String query = "SELECT username, text, number,"
                   +"dateOfCreation, likes"
 				  + " FROM JPost, JUsers"
-                  +" WHERE AM = userAM";
+                  +" WHERE AM = userAM"
+				  + " ORDER BY dateOfCreation desc";
 			//SQL Select Query structure.
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 			 	Post.displayFullPost(rs.getString("text"), rs.getString("username")
                     , rs.getString("dateOfCreation"), rs.getInt("likes"));
+				Post.react(dbcon, rs.getInt("number"));
+				Post.clearConsole();
 			 	
 
 			 }  
@@ -30,6 +33,29 @@ public class DatabasePost {
 			e.printStackTrace();
 		}
 	}
+    
+	static void incrementLikes(final Connection dbcon, final int postNumber) {
+    /* This method is used to increment a post's like counter
+	 * inside the database.
+	 */
+	    Statement stmt;
+		try {
+			stmt = dbcon.createStatement();
+            // SQL Update query structure
+			String query = "UPDATE Jpost "
+			    +" SET likes = likes + 1 "
+				+" WHERE number = " + postNumber;
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			System.out.print("SQLException: ");
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+
+	}
+
+
 	static void createPost(final Connection dbcon, final int number,
 	    final String creatorSN, final String text) {
 		/* Initiating a SQL Insert statement (inserting a new post
