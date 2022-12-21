@@ -16,7 +16,6 @@ public class DatabasePost {
 				  + " FROM JPost, JUsers"
                   +" WHERE AM = userAM";
 			//SQL Select Query structure.
-			System.out.println(query);
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 			 	Post.displayFullPost(rs.getString("text"), rs.getString("username")
