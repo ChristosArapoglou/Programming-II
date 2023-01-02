@@ -41,9 +41,12 @@ public class SignUp {
         password = in.nextLine();
     }
     /*asks from the user to give his email*/  
-    void askEmail() {
+    void askEmail(Connection dbon) {
         System.out.println("Please, give your email");
-        email = in.nextLine();
+        do{
+            email = in.nextLine();
+        }while (Verify.uniqueEmail(dbon, email));
+        System.out.println("Accepted email adress!");
     }
     /*asks from the user to give his student number*/   
     void askStudentNumber() {
@@ -69,9 +72,8 @@ public class SignUp {
     }
 
     /*saves the user's data to the database */
-    void savingData(){
+    void savingData(Connection dbcon) {
 
-        Connection dbcon = Database.initiateConnection();
         DatabaseUser.insertQuery(dbcon, sn, firstName, lastName, username, password, stDept, dob, email);
     }
 }
