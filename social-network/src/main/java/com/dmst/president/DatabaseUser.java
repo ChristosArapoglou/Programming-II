@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.GregorianCalendar;
 
 class DatabaseUser {
 	static void selectQuery(final Connection dbcon,
@@ -32,7 +33,7 @@ class DatabaseUser {
 	}
 	static void insertQuery(final Connection dbcon, final String sn,
         final String firstName, final String lastName, final String username,
-        final String password, final String stDept, final String dob) {
+        final String password, final String stDept, final GregorianCalendar dob, final String email) {
 		/* Initiating a SQL Insert statement (inserting new data
 		   in the database).*/
 		Statement stmt;
@@ -45,7 +46,7 @@ class DatabaseUser {
 			String query = "INSERT INTO Users VALUES('" + sn
 			+ "', '" + firstName + "', '" + lastName + "', '"
 		    + username + "', '" + password + "', '" + stDept
-		    + "', '" + dob + "')";
+		    + "', '" + dob + "', '" + email + "')";
 			/* The "execute" method is used to insert the data
 		 	in the database */
 			stmt.execute(query);

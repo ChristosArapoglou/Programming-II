@@ -1,3 +1,5 @@
+package com.dmst.president;
+
 import java.sql.*;
 
 public class Verify {
