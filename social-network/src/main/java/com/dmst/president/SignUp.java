@@ -40,7 +40,7 @@ public class SignUp {
         System.out.println("Please, create your password");
         password = in.nextLine();
     }
-    /*asks from the user to give his email and verify if email is unique*/
+    /*asks from the user to give his email and verifies if the email adress is unique*/
     
     void askEmail(Connection dbon) {
         System.out.println("Please, give your email");
