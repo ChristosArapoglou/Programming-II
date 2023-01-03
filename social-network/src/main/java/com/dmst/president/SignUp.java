@@ -74,7 +74,6 @@ public class SignUp {
 
     /*saves the user's data to the database */
     void savingData(Connection dbcon) {
-
         DatabaseUser.insertQuery(dbcon, sn, firstName, lastName, username, password, stDept, dob, email);
     }
 }
