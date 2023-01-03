@@ -1,12 +1,14 @@
 package com.dmst.president;
 
 import java.util.Scanner;
+import java.sql.Connection;
 import java.util.InputMismatchException;
 
 public class LogOut {
 
 
     public void logout() throws InputMismatchException {
+    	Connection dbcon = Database.initiateConnection();
         Scanner input = new Scanner(System.in);
 
         boolean flag =true;
@@ -30,9 +32,9 @@ public class LogOut {
                System.exit(1);
             } else if(answer2.equals("L")) {
                 Login login = new Login();
-                login.askUserName();
+                login.askSN();
                 login.askPassword();
-                login.connectornot();
+                login.verify(dbcon);
                 flag =false;
             } else {
                  System.out.println("Please enter a valid charachter. ");
