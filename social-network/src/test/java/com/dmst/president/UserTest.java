@@ -18,14 +18,14 @@ public class UserTest {
     Date signupDate = new GregorianCalendar(2022, Calendar.SEPTEMBER, 2).getTime();
     /*Creating a user */
     User userobject = new User("Giannis", "Sarantopoulos", "giannisntop", 
-          "1234@#", "johnntopoulos@aueb.gr","8382", "DMST",date_of_birth, signupDate  );
+          "1234@#", "johnntopoulos@aueb.gr","8382", date_of_birth, "DMST");
     
     @Test
     void testGetDate_of_birth() {
        /*Converting date_of_birth variable into a String */
         SimpleDateFormat sdf= new SimpleDateFormat("dd/mm/yyyy");
         String expecteddob= sdf.format(date_of_birth);
-        String actualdob = sdf.format(userobject.getDate_of_birth());
+        String actualdob = sdf.format(userobject.getDob());
         
         assertEquals(expecteddob, actualdob);
     }
@@ -40,14 +40,14 @@ public class UserTest {
     @Test
     void testGetFirst_name() {
        String expectedfname= "Giannis";
-       String actualfname= userobject.getFirst_name();
+       String actualfname= userobject.getFirstName();
        assertEquals(expectedfname, actualfname);
     }
 
     @Test
     void testGetLast_name() {
         String expectedlname= "Sarantopoulos";
-        String actuallname= userobject.getLast_name();
+        String actuallname= userobject.getLastName();
         assertEquals(expectedlname, actuallname);
     }
 
@@ -61,21 +61,21 @@ public class UserTest {
     @Test
     void testGetStudent_number() {
         String expectedsnum= "8382";
-        String actualsnum= userobject.getStudent_number();
+        String actualsnum= userobject.getSn();
         assertEquals(expectedsnum, actualsnum);
     }
 
     @Test
     void testGetStudy_department() {
        String expecteddept = "DMST";
-       String actualdept= userobject.getStudy_department(); 
+       String actualdept= userobject.getStDept(); 
        assertTrue(expecteddept.equals(actualdept));
     }
 
     @Test
     void testGetUser_name() {
        String expecteduname= "giannisntop";
-       String actualuname = userobject.getUser_name();
+       String actualuname = userobject.getUsername();
        assertEquals(expecteduname, actualuname);
     }
 

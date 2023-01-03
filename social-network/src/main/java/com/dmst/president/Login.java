@@ -14,7 +14,7 @@ public class Login {
     private String password;
     private Scanner in = new Scanner(System.in);
     /**Ask from user to enter
-    *his/her username.
+    *his/her user name.
     */
     String askSN() {
         System.out.println("Please, give your University's Student Number.");
