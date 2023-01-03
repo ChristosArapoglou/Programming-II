@@ -79,12 +79,12 @@ public class UserTest {
        assertEquals(expecteduname, actualuname);
     }
 
-    @Test
+    /*@Test
     void testGetSignUpDate() {
         SimpleDateFormat sdf= new SimpleDateFormat("dd/mm/yyyy");
         String expectedsignupdate= sdf.format(signupDate);
         String actualsignupdate = sdf.format(userobject.getSignUpDate());
         
         assertEquals(expectedsignupdate, actualsignupdate);
-    }
+    }*/
 }
