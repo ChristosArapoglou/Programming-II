@@ -75,8 +75,6 @@ public final class Post {
      */
         displayPost(text,creator, strDate,likes);
         System.out.println();
-        //react();
-        //clearConsole();
         
 
     }
@@ -119,15 +117,6 @@ public final class Post {
                     || (ans.toLowerCase().equals("n"))));
 
         if (ans.toLowerCase().equals("l")) {
-           // likes++;
-           /* Since we are using a database to store data
-            * we dont have to increment the instance variable likes
-            * instead we should update table JPosts directly.
-            * If we try to increment the instance variable likes a problem 
-            * occurs, because this method is static.As a matter of fact 
-            * almost all of this class' methods should be static
-            * since we don't want to create a new post in order to access them.
-           */
             DatabasePost.incrementLikes(dbcon, postNumber);
             System.out.println("Answer recorded successfully");
             delay(2500);
