@@ -2,6 +2,7 @@ package com.dmst.president;
 
 import java.util.Scanner;
 import java.util.GregorianCalendar;
+import java.sql.Connection;
 
 public class SignUp {
     /*declaration of variables*/
@@ -39,10 +40,14 @@ public class SignUp {
         System.out.println("Please, create your password");
         password = in.nextLine();
     }
-    /*asks from the user to give his email*/  
-    void askEmail() {
+    /*asks from the user to give his email and verifies if the email adress is unique*/
+    
+    void askEmail(Connection dbon) {
         System.out.println("Please, give your email");
-        email = in.nextLine();
+        do{
+            email = in.nextLine();
+        }while (Verify.uniqueEmail(dbon, email));
+        System.out.println("Accepted email adress!");
     }
     /*asks from the user to give his student number*/   
     void askStudentNumber() {
@@ -65,5 +70,11 @@ public class SignUp {
         System.out.println("Please, enter your study department.");
         stDept = in.nextLine();
         stDept = in.nextLine();
+    }
+
+    /*saves the user's data to the database */
+    void savingData(Connection dbcon) {
+
+        DatabaseUser.insertQuery(dbcon, sn, firstName, lastName, username, password, stDept, dob, email);
     }
 }
