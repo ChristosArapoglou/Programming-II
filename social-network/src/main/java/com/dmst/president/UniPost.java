@@ -20,8 +20,6 @@ public class UniPost {
             ans = in.nextLine();
             /* the answer is converted to lower case,
                 * then checked if it meets the criteria */
-        Scanner in = new Scanner(System.in);
-
             if (!(ans.toLowerCase().equals("s") || ans.toLowerCase().equals("l"))) {
                     System.out.println("Wrong answer");
             }
