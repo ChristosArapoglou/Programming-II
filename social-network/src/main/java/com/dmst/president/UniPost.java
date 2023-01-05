@@ -3,6 +3,7 @@ package com.dmst.president;
 import java.sql.Connection;
 import java.util.Scanner;
 
+
 public class UniPost {
 	final static String WELCOME = "Welcome to UniPost, the first application designed "
 			+ "for University students, by University students. Using this app, you can "
@@ -19,7 +20,6 @@ public class UniPost {
             ans = in.nextLine();
             /* the answer is converted to lower case,
                 * then checked if it meets the criteria */
-
             if (!(ans.toLowerCase().equals("s") || ans.toLowerCase().equals("l"))) {
                     System.out.println("Wrong answer");
             }
@@ -40,6 +40,15 @@ public class UniPost {
             } catch (InterruptedException e) {
             }
         }
-        in.close();
+        DatabasePost.displayAllPosts(dbcon);
+        System.out.println("Press <C> to create a new Post");
+        ans = in.nextLine();
+        if (ans.toLowerCase().equals("c")) {
+            Post.clearConsole();
+            System.out.println("Enter your thoughts :");
+            String text = in.nextLine();
+            DatabasePost.createPost(dbcon, "8210029", text);
+            System.out.println("Post created succesfully");
+        }
     }
 }
