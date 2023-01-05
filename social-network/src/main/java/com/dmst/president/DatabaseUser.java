@@ -45,7 +45,7 @@ class DatabaseUser {
 			String query = "INSERT INTO JUsers VALUES('" + sn
 			+ "', '" + firstName + "', '" + lastName + "', '"
 		    + username + "', '" + password + "', '" + stDept
-		    + "', '" + dob + "', '" + email + "')";
+		    + "', '" + dob + "', '" + email + "', 0)";
 			/* The "execute" method is used to insert the data
 		 	in the database */
 			stmt.execute(query);
