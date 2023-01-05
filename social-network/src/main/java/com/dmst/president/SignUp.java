@@ -64,5 +64,6 @@ public class SignUp {
      void askStudyDepartment() {
         System.out.println("Please, enter your study department.");
         stDept = in.nextLine();
+        stDept = in.nextLine();
     }
 }
