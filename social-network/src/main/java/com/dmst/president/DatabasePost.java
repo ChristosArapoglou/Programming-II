@@ -23,9 +23,8 @@ public class DatabasePost {
                     , rs.getString("dateOfCreation"), rs.getInt("likes"));
 				Post.react(dbcon, rs.getInt("number"));
 				Post.clearConsole();
-			 	
 
-			 }  
+			}
              
 		} catch (SQLException e) {
 			System.out.print("SQLException: ");
@@ -33,7 +32,7 @@ public class DatabasePost {
 			e.printStackTrace();
 		}
 	}
-    
+
 	static void incrementLikes(final Connection dbcon, final int postNumber) {
     /* This method is used to increment a post's like counter
 	 * inside the database.
@@ -56,33 +55,23 @@ public class DatabasePost {
 	}
 
 
-	static void createPost(final Connection dbcon, final int number,
+	static void createPost(final Connection dbcon,
 	    final String creatorSN, final String text) {
 		/* Initiating a SQL Insert statement (inserting a new post
 	 	in the database).*/
 		Statement stmt;
-		boolean flag = false;
 		try {
 			stmt = dbcon.createStatement();
 			//SQL Insert Query structure.
-			String query = "INSERT INTO JPost VALUES(" + number
-				+ ", '" + creatorSN + "', '" + text + "', GETDATE(), 0";
+			String query = "INSERT INTO JPost (userAM,text,dateOfCreation,likes) VALUES('"+ creatorSN + "','" + text + "', GETDATE(), 0);";
 			/*The "execute" method returns a boolean value
 			which is stored in a boolean variable. */
 			stmt.execute(query);
-			flag = true;
-			System.out.println(query);
 		} catch (SQLException e) {
 			System.out.print("SQLException: ");
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		/* Checking whether the data insertion was successful or not,
-		based on the "execute" method return statement. */
-		if (flag) {
-			System.out.println("Successful post insertion! :)");
-		} else {
-			System.out.println("Unsuccessful post insertion... :(");
-		}
+
 	}
 }
