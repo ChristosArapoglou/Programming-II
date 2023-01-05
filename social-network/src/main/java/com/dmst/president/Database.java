@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-class Database {
-    static Connection initiateConnection() {
+public class Database {
+    public static Connection initiateConnection() {
         // Initiating a connection with our MS SQL Server database.
         String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr;"
         + "databaseName=DB48;"
