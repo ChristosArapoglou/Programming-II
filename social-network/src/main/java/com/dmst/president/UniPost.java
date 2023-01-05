@@ -25,26 +25,21 @@ public class UniPost {
             }
         } while (!(ans.toLowerCase().equals("s") || (ans.toLowerCase().equals("l"))));
         if (ans.toLowerCase().equals("l")) {
-           // likes++;
-           /* Since we are using a database to store data
-            * we don't have to increment the instance variable likes
-            * instead we should update table JPosts directly.
-            * If we try to increment the instance variable likes a problem 
-            * occurs, because this method is static.As a matter of fact 
-            * almost all of this class' methods should be static
-            * since we don't want to create a new post in order to access them.
-           */
         	Login l = new Login();
             l.verify(dbcon);
-            delay(2500);
+            try {
+            	Thread.sleep(2500);
+            } catch (InterruptedException e) {
+            }
+        } else {
+        	SignUp s = new SignUp();
+        	s.newUser(dbcon);
+        	try {
+        		System.out.println("Your sign up has been successfully completed. Welcome online.");
+            	Thread.sleep(2500);
+            } catch (InterruptedException e) {
+            }
         }
         in.close();
-    }
-    public static void delay(final long delayDuration) {
-        try {
-            Thread.sleep(delayDuration);
-        } catch (InterruptedException e) {
-            System.err.println("The operation was interrupted");
-        }
     }
 }

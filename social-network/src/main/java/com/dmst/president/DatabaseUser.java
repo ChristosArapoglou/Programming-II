@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.GregorianCalendar;
 
 class DatabaseUser {
 	static void selectQuery(final Connection dbcon,
@@ -16,7 +15,7 @@ class DatabaseUser {
 		try {
 			stmt = dbcon.createStatement();
 			String query = "SELECT " + columnName1
-					+ ", " + columnName2 + " FROM Users";
+					+ ", " + columnName2 + " FROM JUsers";
 			//SQL Select Query structure.
 			ResultSet rs = stmt.executeQuery(query);
 			System.out.println(query);
@@ -33,7 +32,7 @@ class DatabaseUser {
 	}
 	static void insertQuery(final Connection dbcon, final String sn,
         final String firstName, final String lastName, final String username,
-        final String password, final String stDept, final GregorianCalendar dob, final String email) {
+        final String password, final String stDept, final String dob, final String email) {
 		/* Initiating a SQL Insert statement (inserting new data
 		   in the database).*/
 		Statement stmt;
@@ -43,7 +42,7 @@ class DatabaseUser {
 		try {
 			stmt = dbcon.createStatement();
 			//SQL Insert Query structure.
-			String query = "INSERT INTO Users VALUES('" + sn
+			String query = "INSERT INTO JUsers VALUES('" + sn
 			+ "', '" + firstName + "', '" + lastName + "', '"
 		    + username + "', '" + password + "', '" + stDept
 		    + "', '" + dob + "', '" + email + "')";
@@ -52,7 +51,6 @@ class DatabaseUser {
 			stmt.execute(query);
 			// If no exceptions are created, the value of flag turns true.
 			flag = true;
-			System.out.println(query);
 		} catch (SQLException e) {
 			System.out.print("SQLException: ");
 			System.out.println(e.getMessage());
@@ -61,10 +59,9 @@ class DatabaseUser {
 		/* Checking whether the data insertion was successful or not,
 		based on the "execute" method return statement. */
 		if (flag) {
-			System.out.println("Successful data insertion! :)");
+			System.out.println("Successful data insertion.");
 		} else {
-			System.out.println("Unsuccessful data insertion... :(");
+			System.out.println("Unsuccessful data insertion.");
 		}
 	}
 }
-
