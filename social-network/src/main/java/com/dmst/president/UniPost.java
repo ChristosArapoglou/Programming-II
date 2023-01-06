@@ -56,6 +56,8 @@ public class UniPost {
                 * then checked if it meets the criteria */
             if (!(ans.toLowerCase().equals("s") || ans.toLowerCase().equals("l"))) {
                     System.out.println("Wrong answer");
+                    delay(500);
+                    clearConsole();
                     flag = true;
             }
         } while (flag);
