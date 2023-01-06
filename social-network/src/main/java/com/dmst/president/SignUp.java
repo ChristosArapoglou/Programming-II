@@ -67,6 +67,7 @@ public class SignUp {
             email = in.nextLine();
         } while (uniqueEmail(dbcon, email));
         System.out.println("Accepted email address.");
+        UniPost.delay(1000);
  		return email;
     }
     static boolean uniqueEmail(final Connection dbcon, final String email) {

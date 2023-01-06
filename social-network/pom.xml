@@ -39,6 +39,7 @@
       <type>maven-plugin</type>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
 
    <reporting>

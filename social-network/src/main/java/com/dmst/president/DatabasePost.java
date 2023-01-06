@@ -22,7 +22,7 @@ public class DatabasePost {
 			 	Post.displayFullPost(rs.getString("text"), rs.getString("username")
                     , rs.getString("dateOfCreation"), rs.getInt("likes"));
 				Post.react(dbcon, rs.getInt("number"));
-				Post.clearConsole();
+				UniPost.clearConsole();
 
 			}
              

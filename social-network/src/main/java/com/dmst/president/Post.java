@@ -79,21 +79,6 @@ public final class Post {
 
     }
 
-    public static void clearConsole() {
-        final String os = System.getProperty("os.name");
-        try {
-            if (os.contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls")
-                .inheritIO().start().waitFor();
-            } else {
-                Runtime.getRuntime().exec("clear");
-            }
-        } catch (Exception e) {
-            System.err.println("error");
-        }
-    }
-
-
     public static void react(final Connection dbcon, final int postNumber) {
         /* This method is used to enable user-post interaction.
          * The user states whether or not he likes the post he
@@ -119,15 +104,7 @@ public final class Post {
         if (ans.toLowerCase().equals("l")) {
             DatabasePost.incrementLikes(dbcon, postNumber);
             System.out.println("Answer recorded successfully");
-            delay(2500);
-        }
-    }
-
-    public static void delay(final long delayDuration) {
-        try {
-            Thread.sleep(delayDuration);
-        } catch (InterruptedException e) {
-            System.err.println("The operation was interrupted");
+            UniPost.delay(2500);
         }
     }
 
