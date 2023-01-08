@@ -19,9 +19,11 @@ public class DatabasePost {
 			//SQL Select Query structure.
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
-			 	Post.displayFullPost(rs.getString("text"), rs.getString("username")
+			 	Post.displayPost(rs.getString("text"), rs.getString("username")
                     , rs.getString("dateOfCreation"), rs.getInt("likes"));
-				Post.react(dbcon, rs.getInt("number"));
+				markPostAsSeen(dbcon, DatabaseUser.getActiveUser(dbcon) , rs.getInt("number"));
+				System.out.println();
+				Post.react(dbcon, DatabaseUser.getActiveUser(dbcon), rs.getInt("number"));
 				UniPost.clearConsole();
 
 			}
@@ -41,7 +43,7 @@ public class DatabasePost {
 		try {
 			stmt = dbcon.createStatement();
             // SQL Update query structure
-			String query = "UPDATE Jpost "
+			String query = "UPDATE JPost "
 			    +" SET likes = likes + 1 "
 				+" WHERE number = " + postNumber;
 			stmt.executeUpdate(query);
@@ -73,5 +75,83 @@ public class DatabasePost {
 			e.printStackTrace();
 		}
 
+	}
+
+
+	static void markPostAsSeen(Connection dbcon, String AM, int postNumber) {
+		/* This method is used to notify the database that a user
+		 * has seen a post.
+		 */
+		Statement stmt;
+		try {
+			stmt = dbcon.createStatement();
+			String query = "SELECT * "
+			    +"FROM JSees "
+				+"WHERE userAM = "+AM+" AND postNumber = "+postNumber;
+			ResultSet rs = stmt.executeQuery(query);
+			/*  if the user hasn't already seen the post and
+			 * therefore the result set is empty.
+			 */
+			if (!rs.next()) {
+				String insertQuery = "INSERT INTO JSees (userAM,postNumber,hasLiked) "
+				    +"VALUES('"+AM+"','"+postNumber+"',0)";
+				/* Notify the database that a user just saw a post
+				 * he has yet to like.
+				 */
+				stmt.executeUpdate(insertQuery);
+			}			
+		} catch (SQLException e) {
+			System.out.print("SQLException: ");
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+
+	static void markPostAsLiked(Connection dbcon, String AM, int postNumber) {
+		/* This method is used to notify the database that a user
+		 * has liked a post.
+		 */
+		Statement stmt;
+		try {
+			stmt = dbcon.createStatement();
+			String query = "UPDATE JSees "
+			    +"SET hasLiked = 1 "
+				+"WHERE userAM = "+AM+" AND postNumber = "+postNumber;
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			System.out.print("SQLException: ");
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+
+	static boolean ensureUniqueLikes(Connection dbcon, String AM, int postNumber) {
+		/* This method is used to check whether or not the active user
+		 * has already liked the post he just saw.
+		 */
+		// We assume that he hasn't already liked the post.
+		boolean flag = false;
+		Statement stmt;
+		try {
+			stmt = dbcon.createStatement();
+			String query = "SELECT hasLiked "
+			    +"FROM JSees "
+				+"WHERE userAM = "+AM+" AND postNumber = "+postNumber;
+			ResultSet rs = stmt.executeQuery(query);
+			if (rs.next()) {
+				int bin = rs.getInt("hasLiked");
+				// hasLiked is binary in the database
+				if (bin == 1) {
+                    flag = true;
+				}
+			}
+		}  catch (SQLException e) {
+			System.out.print("SQLException: ");
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+        return flag;
 	}
 }

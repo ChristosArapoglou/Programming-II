@@ -67,19 +67,7 @@ public final class Post {
     }
 
 
-    public static void displayFullPost(String text, String creator
-    , String strDate, int likes) {
-    /* With the particular current implementation this method
-     * has no reason to exist. All of it's components are 
-     * used separately inside DatabasePost.displayAllPosts
-     */
-        displayPost(text,creator, strDate,likes);
-        System.out.println();
-        
-
-    }
-
-    public static void react(final Connection dbcon, final int postNumber) {
+    public static void react(final Connection dbcon, final String AM, final int postNumber) {
         /* This method is used to enable user-post interaction.
          * The user states whether or not he likes the post he
          * just saw. The parameters are only needed to call the
@@ -102,9 +90,16 @@ public final class Post {
                     || (ans.toLowerCase().equals("n"))));
 
         if (ans.toLowerCase().equals("l")) {
-            DatabasePost.incrementLikes(dbcon, postNumber);
-            System.out.println("Answer recorded successfully");
-            UniPost.delay(2500);
+            if (DatabasePost.ensureUniqueLikes(dbcon, AM, postNumber)) {
+                // If the user tries to like a post he has already liked
+                System.out.println("You have already liked this post!");
+                UniPost.delay(2500);
+            } else {
+                DatabasePost.incrementLikes(dbcon, postNumber);
+                DatabasePost.markPostAsLiked(dbcon, AM, postNumber);
+                System.out.println("Answer recorded successfully");
+                UniPost.delay(2500);
+            }
         }
     }
 

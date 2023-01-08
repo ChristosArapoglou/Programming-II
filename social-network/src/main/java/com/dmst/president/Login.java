@@ -48,17 +48,29 @@ public class Login {
                       + "WHERE AM = '" + sn + "'";
     			//SQL Select Query structure.
     			ResultSet rs = stmt.executeQuery(query);
-    			while (rs.next()) {
+    			if (rs.next()) {
     				if (rs.getString("password").equals(password)) {
     					System.out.println("Correct credentials. Welcome online.");
     					flag = false;
+                        /* After a successful login, notify the databaase
+                         * that the user is now active.
+                         */
+                        String upQuery = "UPDATE JUsers "
+                            +" SET isON = 1" 
+                            + "WHERE AM = '" + sn + "'";
+                        stmt.executeUpdate(upQuery);
     				} else {
-    					System.out.println("Sorry, your credentials are incorrect!");
-    	                System.out.println();
-    	                System.out.println("Please, try again!");
-    	                System.out.println();
-    				}
-    			}    
+                        System.out.println("Sorry, your credentials are incorrect!");
+                        System.out.println();
+                        System.out.println("Please, try again!");
+                        System.out.println();
+                    }   
+    			} else {
+                    System.out.println("Sorry, your credentials are incorrect!");
+                    System.out.println();
+                    System.out.println("Please, try again!");
+                    System.out.println();
+                }   
     		} catch (SQLException e) {
     			System.out.print("An unwanted error occurred. Please "
     					+ "check your credentials again before retrying.");

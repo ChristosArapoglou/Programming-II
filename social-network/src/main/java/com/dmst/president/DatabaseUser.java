@@ -64,4 +64,48 @@ class DatabaseUser {
 			System.out.println("Unsuccessful data insertion.");
 		}
 	}
+
+	static String getActiveUser(final Connection dbcon) {
+		/* This method finds the user set active
+		 * by a successful login. 
+		 */
+		Statement stmt; 
+		String activeUser = null;
+		try {
+			stmt = dbcon.createStatement();
+			String query = "SELECT AM "
+			    +"FROM JUsers "
+				+"WHERE isON = 1";
+			ResultSet rs = stmt.executeQuery(query);
+			if (rs.next()) {
+				activeUser = rs.getString("AM");
+			}
+			return activeUser;
+		} catch (SQLException e) {
+			System.out.print("SQLException: ");
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		return activeUser;
+
+	}
+
+	static void logOutUser(Connection dbcon, String AM) {
+		/* This method is used to notify the database that the user
+		 * is no longer active.
+		 */
+		Statement stmt;
+		try {
+			stmt = dbcon.createStatement();
+			String query = "UPDATE JUsers "
+			    +" SET isON = 0" 
+			    + "WHERE AM = '" + AM + "'";
+			stmt.executeUpdate(query);			
+		} catch (SQLException e) {
+			System.out.print("SQLException: ");
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
 }

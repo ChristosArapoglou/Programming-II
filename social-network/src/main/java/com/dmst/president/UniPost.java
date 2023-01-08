@@ -12,11 +12,9 @@ public class UniPost {
     public static void main( String[] args ) {
 
         Connection dbcon = Database.initiateConnection();
-        //Prints welcome message
-        System.out.println(WELCOME);
-        System.out.println();
+       
 
-        
+        welcomeUser();
         displayLoginSignupPage(dbcon);
         displayWall(dbcon);
         
@@ -44,6 +42,14 @@ public class UniPost {
         }
     }
 
+    public static void welcomeUser() {
+         //Prints welcome message
+         clearConsole();
+         System.out.println(WELCOME);
+         System.out.println();
+         
+    }
+
     public static void displayLoginSignupPage(Connection dbcon) {
         String ans;
         
@@ -69,7 +75,8 @@ public class UniPost {
         	SignUp s = new SignUp();
         	s.newUser(dbcon);
         	try {
-        		System.out.println("Your sign up has been successfully completed. Welcome online.");
+        		System.out.println("Your sign up has been successfully completed."
+                    +"\nYou will now return to the login screen.");
             	Thread.sleep(2500);
                 clearConsole();
                 displayLoginSignupPage(dbcon);
@@ -93,17 +100,19 @@ public class UniPost {
                 clearConsole();
                 System.out.println("Enter your thoughts :");
                 String text = in.nextLine();
-                DatabasePost.createPost(dbcon, "8210029", text);
+                DatabasePost.createPost(dbcon, DatabaseUser.getActiveUser(dbcon), text);
                 System.out.println("Post created succesfully");
             } else if (ans.toLowerCase().equals("v")) {
                 clearConsole();
                 DatabasePost.displayAllPosts(dbcon);
                 flag = true;
             } else if (ans.toLowerCase().equals("l")) {
+                DatabaseUser.logOutUser(dbcon, DatabaseUser.getActiveUser(dbcon));
                 clearConsole();
                 flag = true;
                 displayLoginSignupPage(dbcon);
             } else if (ans.toLowerCase().equals("e")) {
+                DatabaseUser.logOutUser(dbcon, DatabaseUser.getActiveUser(dbcon));
                 System.exit(1);
             } else {
                 System.out.println("Wrong input!!");
