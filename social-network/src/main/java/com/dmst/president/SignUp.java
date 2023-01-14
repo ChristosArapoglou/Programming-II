@@ -6,50 +6,94 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * This class asks the user to input their personal data in order
+ * to sign up to our social media platform. After verifying that 
+ * their Student Number and email are unique (there aren't duplicates
+ * in the database), their sign up is completed and is registered to
+ * our database. 
+ */
 public class SignUp {
-    /*declaration of variables*/
+    /**
+     * User's Student Number.
+     */
 	String sn;
+    /**
+     * User's first name.
+     */
     String firstName;
+    /**
+     * User's last name.
+     */
     String lastName;
+    /**
+     * User's username.
+     */
     String username;
+    /**
+     * User's password.
+     */
     String password;
+    /**
+     * User's email.
+     */
     String email;
+    /**
+     * User's date of birth.
+     */
     String dob;
+    /**
+     * User's AUEB study department.
+     */
     String stDept;
     Scanner in = new Scanner(System.in);
-    /*asks from the user to give his student number*/   
+    /**
+     * This method asks the user for their Student Number.
+     */
     String askSn() {
-        System.out.println("Please, enter your student number");
+        System.out.println("Please, enter your student number.");
         return sn = in.nextLine();
     }
-    /*asks from the user to give his first name*/
+    /**
+     * This method asks the user for their first name.
+     */
     String askFirstName() {
-        System.out.println("Please, enter your first name.");
+        System.out.println("Enter your first name.");
         return firstName = in.nextLine();
     }
-    /*asks from the user to give his last name*/
+    /**
+     * This method asks the user for their last name.
+     */
     String askLastName() {
-        System.out.println("Please, enter your last name.");
+        System.out.println("Enter your last name.");
         return lastName = in.nextLine();
     }
-    /*asks from the user to give his user name that he will use in the platform*/
+    /**
+     * This method asks the user for their username.
+     */
     String  askUsername() {
-        System.out.println("Please, enter your username.");
+        System.out.println("Enter your username.");
         return username = in.nextLine();
     }
-    /*asks from the user to create password for his user name*/ 
+    /**
+     * This method asks the user for their password.
+     */ 
     String  askPassword() {
-        System.out.println("Please, create your password.");
+        System.out.println("Create your password.");
         return password = in.nextLine();
     }
-    /*asks from the user to give his study department*/
+    /**
+     * This method asks the user for their study department.
+     */
     String askStDept() {
-       System.out.println("Please, enter your study department.");
+       System.out.println("Enter your study department.");
        return stDept = in.nextLine();
     }
-    /*asks from the user to give his date of birth*/
+    /**
+     * This method asks the user for their date of birth.
+     */
      String askDob() {
-        System.out.print("Please, enter your date of birth: ");
+        System.out.println("Enter your date of birth: ");
         System.out.println("Year: ");
         int year = in.nextInt();
         System.out.println("Month: ");
@@ -59,7 +103,11 @@ public class SignUp {
         dob = year + "-" + month + "-" + day;
 		return dob;
     }
-    /*asks from the user to give his email and verifies if the email address is unique*/
+    /**
+     * This method asks the user for their email. A verification check
+     * is executed in this method to ensure that the user's email is not
+     * already registered in the database.
+     */
     String askEmail(Connection dbcon) {
         System.out.println("Please, enter your email address.");
         do {
@@ -70,13 +118,17 @@ public class SignUp {
         UniPost.delay(1000);
  		return email;
     }
+    /**
+     * This method takes the user's email as a parameter and checks
+     * whether this email exists in the database or not. If it doesn't,
+     * the user can proceed with the sign up process. If it exists, it 
+     * means that some other user uses this email, so he has to enter a 
+     * different, unique email address to continue.
+     */
     static boolean uniqueEmail(final Connection dbcon, final String email) {
-        //A method designed to ensure every email is unique in the database.
         boolean flag = false;
         Statement stmt;
-		//Searching for the email in the database.
 		try {
-            //SQL Select Query structure.
             stmt = dbcon.createStatement();
 			String query = "SELECT * FROM JUsers WHERE email = '" + email + "'";
 			ResultSet rs = stmt.executeQuery(query);	
@@ -92,7 +144,10 @@ public class SignUp {
         }
         return flag;
     }
-    /*saves the user's data to the database */
+    /**
+     * This method takes all of the user's input data and stores it in the 
+     * database as a new user.
+     */
     void newUser(Connection dbcon) {
         DatabaseUser.insertUser(dbcon, askSn(), askFirstName(), askLastName(), askUsername(), askPassword(), askStDept(), askDob(), askEmail(dbcon));
     }

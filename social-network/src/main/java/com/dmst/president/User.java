@@ -1,6 +1,5 @@
 package com.dmst.president;
 
-//import java.text.SimpleDateFormat;  
 import java.util.Date;
 
 class User {

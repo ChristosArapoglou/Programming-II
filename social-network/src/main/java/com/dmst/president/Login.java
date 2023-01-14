@@ -7,9 +7,9 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 /**
- * This class is used to request from users to enter their credentials
- * in order to log in the app. If their input is matched with the saved 
- * in the database credentials, they are connected. If their input is
+ * This class is used to request from already registered users to enter 
+ * their credentials in order to log in the app. If their input is matched 
+ * with already stored credentials, they are connected. If their input is
  * incorrect, the process is repetead until users successfully log in or
  * exit the app.
  */

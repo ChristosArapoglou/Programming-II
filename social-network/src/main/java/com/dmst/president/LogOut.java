@@ -4,7 +4,18 @@ import java.util.Scanner;
 import java.sql.Connection;
 import java.util.InputMismatchException;
 
+/**
+ * This class is used to log out users from the application.
+ * After logging out, the program returns to its initial wall,
+ * where it asks the user if he would like to log in or 
+ * sign up.
+ */
 public class LogOut {
+    /**
+	 * This method is designed to help users log out from the
+     * app smoothly. After logging out, it asks the user if he
+     * desires to sign up or log in again.
+ 	 */
     public void logout() throws InputMismatchException {
     	Connection dbcon = Database.initiateConnection();
         Scanner input = new Scanner(System.in);
