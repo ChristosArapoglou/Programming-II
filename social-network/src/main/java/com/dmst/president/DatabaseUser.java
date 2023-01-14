@@ -22,7 +22,7 @@ class DatabaseUser {
  	 */
 	static void insertUser(final Connection dbcon, final String sn,
         final String firstName, final String lastName, final String username,
-        final String password, final String stDept, final String dob, final String email) {
+        final String password, final String stDept, final String email, final String dob) {
 		Statement stmt;
 		boolean flag = false;
 		try {

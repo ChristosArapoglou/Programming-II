@@ -19,7 +19,7 @@ public class UniPost {
         try {
             Thread.sleep(delayDuration);
         } catch (InterruptedException e) {
-            System.err.println("The operation was interrupted");
+            System.err.println("The operation was interrupted.");
         }
     }
     public static void clearConsole() {
@@ -68,7 +68,7 @@ public class UniPost {
         	try {
         		System.out.println("Your sign up has been successfully completed."
                     +"\nYou will now return to the login screen.");
-            	Thread.sleep(2500);
+            	Thread.sleep(4000);
                 clearConsole();
                 displayLoginSignupPage(dbcon);
             } catch (InterruptedException e) {

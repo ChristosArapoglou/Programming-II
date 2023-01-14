@@ -115,7 +115,7 @@ public class SignUp {
      * already registered in the database.
      */
     String askEmail(Connection dbcon) {
-        System.out.println("Please, enter your email address.");
+        System.out.println("Enter your email address.");
         do {
             email = in.nextLine();
         } while (uniqueEmail(dbcon, email));
@@ -156,15 +156,15 @@ public class SignUp {
      * means that some other user uses this student number, so he has to enter a 
      * different, unique sn to continue.
      */
-    static boolean uniqueSn(final Connection dbcon, final String AM) {
+    static boolean uniqueSn(final Connection dbcon, final String sn) {
         boolean flag = false;
         Statement stmt;
 		try {
             stmt = dbcon.createStatement();
-			String query = "SELECT * FROM JUsers WHERE AM = '" + AM + "'";
-			ResultSet rs = stmt.executeQuery(query);	
+			String query = "SELECT * FROM JUsers WHERE AM = '" + sn + "'";
+			ResultSet rs = stmt.executeQuery(query);
 		 	if (rs.next()) {
-                System.err.println("This student number already exists. "
+                System.err.println("This Student Number already exists. "
                     + "Please insert a new student number.");
                 flag = true;
             }
@@ -180,6 +180,6 @@ public class SignUp {
      * database as a new user.
      */
     void newUser(Connection dbcon) {
-        DatabaseUser.insertUser(dbcon, askSn(dbcon), askFirstName(), askLastName(), askUsername(), askPassword(), askStDept(), askDob(), askEmail(dbcon));
+        DatabaseUser.insertUser(dbcon, askSn(dbcon), askFirstName(), askLastName(), askUsername(), askPassword(), askStDept(), askEmail(dbcon), askDob());
     }
 }
