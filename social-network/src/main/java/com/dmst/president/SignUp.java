@@ -94,6 +94,6 @@ public class SignUp {
     }
     /*saves the user's data to the database */
     void newUser(Connection dbcon) {
-        DatabaseUser.insertQuery(dbcon, askSn(), askFirstName(), askLastName(), askUsername(), askPassword(), askStDept(), askDob(), askEmail(dbcon));
+        DatabaseUser.insertUser(dbcon, askSn(), askFirstName(), askLastName(), askUsername(), askPassword(), askStDept(), askDob(), askEmail(dbcon));
     }
 }

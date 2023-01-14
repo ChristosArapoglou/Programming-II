@@ -14,51 +14,50 @@ import java.sql.Statement;
  * used through String variables.
  */
 class DatabaseUser {
+	/**
+	 * This method is used to insert a new user and save them in the database. 
+	 * Every user is described by their Student Number, first name, last name,
+	 * username, password, study department at AUEB, date of birth and email.
+	 * Queries written in SQL are used to store users in the DB.
+ 	 */
 	static void insertUser(final Connection dbcon, final String sn,
         final String firstName, final String lastName, final String username,
         final String password, final String stDept, final String dob, final String email) {
-		/* Initiating a SQL Insert statement (inserting new data
-		   in the database).*/
 		Statement stmt;
-		/* This boolean variable informs whether 
-		the query was successfully executed or not. */
 		boolean flag = false;
 		try {
 			stmt = dbcon.createStatement();
-			//SQL Insert Query structure.
 			String query = "INSERT INTO JUsers VALUES('" + sn
 			+ "', '" + firstName + "', '" + lastName + "', '"
 		    + username + "', '" + password + "', '" + stDept
 		    + "', '" + dob + "', '" + email + "', 0)";
-			/* The "execute" method is used to insert the data
-		 	in the database */
 			stmt.execute(query);
-			// If no exceptions are created, the value of flag turns true.
 			flag = true;
 		} catch (SQLException e) {
 			System.out.print("SQLException: ");
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		/* Checking whether the data insertion was successful or not,
-		based on the "execute" method return statement. */
 		if (flag) {
 			System.out.println("Successful data insertion.");
 		} else {
 			System.out.println("Unsuccessful data insertion.");
 		}
 	}
+	/**
+	 * This method recognizes which user is currently active and returns
+	 * their Student Number.
+	 * Queries written in SQL are used to inform the Java program whether
+	 * a user is active or not.
+ 	 */
 	static String getActiveUser(final Connection dbcon) {
-		/* This method finds the user set active
-		 * by a successful login. 
-		 */
 		Statement stmt; 
 		String activeUser = null;
 		try {
 			stmt = dbcon.createStatement();
 			String query = "SELECT AM "
-			    +"FROM JUsers "
-				+"WHERE isON = 1";
+			    + " FROM JUsers "
+				+ " WHERE isON = 1";
 			ResultSet rs = stmt.executeQuery(query);
 			if (rs.next()) {
 				activeUser = rs.getString("AM");
@@ -71,10 +70,13 @@ class DatabaseUser {
 		}
 		return activeUser;
 	}
+	/**
+	 * This method is used to update the database that the user is
+	 * no longer active after logging out.
+	 * Queries written in SQL are used to update the database about
+	 * the change in user's status.
+ 	 */
 	static void logOutUser(Connection dbcon, String sn) {
-		/* This method is used to notify the database that the user
-		 * is no longer active.
-		 */
 		Statement stmt;
 		try {
 			stmt = dbcon.createStatement();

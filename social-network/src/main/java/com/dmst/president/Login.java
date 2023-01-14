@@ -24,23 +24,28 @@ public class Login {
     private String password;
     private Scanner in = new Scanner(System.in);
     /**
-	 * This method is used to check whether the active user has already liked the post he just saw.
-	 * If so, he is prevented from re-liking the post. A binary (boolean) value stored in the
-	 * database is used to save the user's action on the post.
+	 * This method asks the user to enter his Student Number.
  	 */
     String askSN() {
         System.out.println("Please, give your University's Student Number.");
         sn = in.nextLine();
         return sn;
     }
+    /**
+	 * This method asks the user to enter his password.
+ 	 */
     String askPassword() {
         System.out.println("Please, give your password");
         password = in.nextLine();
         return password;
     }
-    /** The method verify() verifies user's credentials
-    *via User class and prints messages
-    about the results of verification */
+    /**
+	 * This method checks whether the credentials given by the user match
+     * those of any saved user in the database. If the credentials are
+     * verified, the user connects to the app and can access all activities
+     * online: creating new posts, seeing other users' posts and
+     * liking them. Database is updated accordingly.
+ 	 */
     void verify(final Connection dbcon) {
     	boolean flag = true;
     	Statement stmt;
@@ -51,19 +56,14 @@ public class Login {
         	password = askPassword();
         	try {
     			stmt = dbcon.createStatement();
-                //The query executed is fixed
     			String query = "SELECT password "
     				  + "FROM JUsers "
                       + "WHERE AM = '" + sn + "'";
-    			//SQL Select Query structure.
     			ResultSet rs = stmt.executeQuery(query);
     			if (rs.next()) {
     				if (rs.getString("password").equals(password)) {
     					System.out.println("Correct credentials. Welcome online.");
     					flag = false;
-                        /* After a successful login, notify the databaase
-                         * that the user is now active.
-                         */
                         String upQuery = "UPDATE JUsers "
                             +" SET isON = 1" 
                             + "WHERE AM = '" + sn + "'";
