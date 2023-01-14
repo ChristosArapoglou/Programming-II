@@ -10,16 +10,11 @@ public class UniPost {
 			+ "solutions with the other users.";
     static Scanner in = new Scanner(System.in);
     public static void main( String[] args ) {
-
         Connection dbcon = Database.initiateConnection();
-       
-
         welcomeUser();
         displayLoginSignupPage(dbcon);
         displayWall(dbcon);
-        
     }
-
     public static void delay(final long delayDuration) {
         try {
             Thread.sleep(delayDuration);
@@ -27,7 +22,6 @@ public class UniPost {
             System.err.println("The operation was interrupted");
         }
     }
-    
     public static void clearConsole() {
         final String os = System.getProperty("os.name");
         try {
@@ -41,15 +35,12 @@ public class UniPost {
             e.printStackTrace();
         }
     }
-
     public static void welcomeUser() {
          //Prints welcome message
          clearConsole();
          System.out.println(WELCOME);
-         System.out.println();
-         
+         System.out.println();    
     }
-
     public static void displayLoginSignupPage(Connection dbcon) {
         String ans;
         
@@ -85,7 +76,6 @@ public class UniPost {
             }
         }
     }
-
     public static void displayWall(Connection dbcon) {
         boolean flag = false;
         do {

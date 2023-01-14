@@ -6,24 +6,33 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-/**The class Login ask from user to enter his/her credentials,
-*and accordingly to that,
-*he/she can connect in our web site. */
+/**
+ * This class is used to request from users to enter their credentials
+ * in order to log in the app. If their input is matched with the saved 
+ * in the database credentials, they are connected. If their input is
+ * incorrect, the process is repetead until users successfully log in or
+ * exit the app.
+ */
 public class Login {
+    /**
+     * User's Student Number. Used for logging in.
+     */
     private String sn;
+    /**
+     * User's password. Used for logging in.
+     */
     private String password;
     private Scanner in = new Scanner(System.in);
-    /**Ask from user to enter
-    *his/her user name.
-    */
+    /**
+	 * This method is used to check whether the active user has already liked the post he just saw.
+	 * If so, he is prevented from re-liking the post. A binary (boolean) value stored in the
+	 * database is used to save the user's action on the post.
+ 	 */
     String askSN() {
         System.out.println("Please, give your University's Student Number.");
         sn = in.nextLine();
         return sn;
     }
-    /**Ask from user
-    *to enter his/her password
-    */
     String askPassword() {
         System.out.println("Please, give your password");
         password = in.nextLine();

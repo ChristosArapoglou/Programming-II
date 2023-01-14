@@ -7,7 +7,6 @@ import java.util.Scanner;
 import java.sql.Connection;
 
 public final class Post {
-
     /* This instance variable is necessary only in case we need
      * to keep the date as a date type(for SQL) */
     private Date creationDate;
@@ -15,13 +14,10 @@ public final class Post {
     private int likes;
     private String text;
     private final String creator; // User's username
-
     /* Getters are needed to test the program in this particular
      * stage. They might be unnecessary for the final implementation.
      */
     final static Scanner in = new Scanner(System.in);
-
-
     public void setText(final String text) {
         /* This setter could be used to give users the opportunity
          * to edit their posts. No other instance variable needs
@@ -29,8 +25,6 @@ public final class Post {
          */
         this.text = text;
     }
-
-
     public Post(final String creator) {
         // Current date is allocated on variable creationDate type Date
         final Date creationDate = new Date();
@@ -43,14 +37,11 @@ public final class Post {
         this.text = in.nextLine();
         this.creator = creator;
     }
-
-
     public static void displayPost(String text, String creator
         , String strDate, int likes) {
         /* This method is used to display a post.If the post
          * exceeds the 70 character limit, then a StringBuffer
          * is used to insert an escape character. */
-
         final int lineLimit = 70;
         final StringBuffer sb = new StringBuffer(text);
         final int lines = sb.length() / 70;
@@ -58,22 +49,18 @@ public final class Post {
             sb.insert(i * lineLimit, "\n");
         }
         System.out.println(String.format("--------------------------------"
-                    + "--------------------------------------\n"
-                    + "User %s posted:%40s\n\n%s\n%70s\n"
-                    + "--------------------------------------"
-                    + "--------------------------------",
-                    creator, strDate, sb.toString(), "Likes:" + likes));
-
+            + "--------------------------------------\n"
+            + "User %s posted:%40s\n\n%s\n%70s\n"
+            + "--------------------------------------"
+            + "--------------------------------",
+            creator, strDate, sb.toString(), "Likes:" + likes));
     }
-
-
     public static void react(final Connection dbcon, final String AM, final int postNumber) {
         /* This method is used to enable user-post interaction.
          * The user states whether or not he likes the post he
          * just saw. The parameters are only needed to call the
          * DatabasePost.incrementLikes method.
          */
-
         String ans;
         do {
             System.out.println(
@@ -81,14 +68,12 @@ public final class Post {
             ans = in.nextLine();
             /* the answer is converted to lower case,
                 * then checked if it meets the criteria */
-
             if (!(ans.toLowerCase().equals("l")
                     || ans.toLowerCase().equals("n"))) {
                     System.out.println("Wrong answer");
             }
         } while (!(ans.toLowerCase().equals("l")
                     || (ans.toLowerCase().equals("n"))));
-
         if (ans.toLowerCase().equals("l")) {
             if (DatabasePost.ensureUniqueLikes(dbcon, AM, postNumber)) {
                 // If the user tries to like a post he has already liked
@@ -102,5 +87,4 @@ public final class Post {
             }
         }
     }
-
 }
