@@ -50,9 +50,15 @@ public class SignUp {
     /**
      * This method asks the user for their Student Number.
      */
-    String askSn() {
+    String askSn(Connection dbcon) {
         System.out.println("Please, enter your student number.");
-        return sn = in.nextLine();
+        do {
+            sn = in.nextLine();
+            
+        } while (uniqueSn(dbcon, sn));
+        System.out.println("Accepted student number.");
+        UniPost.delay(1000);
+ 		return sn;
     }
     /**
      * This method asks the user for their first name.
@@ -112,7 +118,6 @@ public class SignUp {
         System.out.println("Please, enter your email address.");
         do {
             email = in.nextLine();
-            email = in.nextLine();
         } while (uniqueEmail(dbcon, email));
         System.out.println("Accepted email address.");
         UniPost.delay(1000);
@@ -145,10 +150,36 @@ public class SignUp {
         return flag;
     }
     /**
+     * This method takes the user's student number as a parameter and checks
+     * whether this sn exists in the database or not. If it doesn't,
+     * the user can proceed with the sign up process. If it exists, it 
+     * means that some other user uses this student number, so he has to enter a 
+     * different, unique sn to continue.
+     */
+    static boolean uniqueSn(final Connection dbcon, final String AM) {
+        boolean flag = false;
+        Statement stmt;
+		try {
+            stmt = dbcon.createStatement();
+			String query = "SELECT * FROM JUsers WHERE AM = '" + AM + "'";
+			ResultSet rs = stmt.executeQuery(query);	
+		 	if (rs.next()) {
+                System.err.println("This student number already exists. "
+                    + "Please insert a new student number.");
+                flag = true;
+            }
+		} catch (SQLException e) {
+			System.out.print("SQLException: ");
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+        }
+        return flag;
+    }
+    /**
      * This method takes all of the user's input data and stores it in the 
      * database as a new user.
      */
     void newUser(Connection dbcon) {
-        DatabaseUser.insertUser(dbcon, askSn(), askFirstName(), askLastName(), askUsername(), askPassword(), askStDept(), askDob(), askEmail(dbcon));
+        DatabaseUser.insertUser(dbcon, askSn(dbcon), askFirstName(), askLastName(), askUsername(), askPassword(), askStDept(), askDob(), askEmail(dbcon));
     }
 }
