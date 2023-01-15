@@ -23,17 +23,5 @@ Log Ιn. Αφού κάνει Log In ή Sign Up , θα είναι σε θέση �
 περιεχόμενο του Post. Επιπροσθέτως, του δίνεται η δυνατότητα να εναλάσσει μεταξύ των δημοσιεύσεων άλλων χρηστών. 
 
 # Δομή αποθετηρίου GitHub. 
-$ ./tree-md .
-# Project tree
 
-.
- * [tree-md](./tree-md)
- * [.github/workflows](./dir1)
-   * [workflow.yml](./dir1/workflow.yml)
- * [social-network](./dir2)
-   * [src](./dir2/src)
-      *[main/java/com/dmst/president](./src/main/java/com/dmst/president)
-   * [file12.ext](./dir1/file12.ext)
- * [file_in_root.ext](./file_in_root.ext)
- * [README.md](./README.md)
- * [dir3](./dir3)
+
