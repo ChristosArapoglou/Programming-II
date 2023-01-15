@@ -3,26 +3,34 @@ package com.dmst.president;
 import java.sql.Connection;
 import java.util.Scanner;
 
-public class UniPost {
-	final static String WELCOME = "Welcome to UniPost, the first application designed "
-			+ "for University students, by University students. Using this app, you can "
-			+ "discuss issues concerning your University and try finding excellent "
-			+ "solutions with the other users.";
-    static Scanner in = new Scanner(System.in);
-    public static void main( String[] args ) {
-        Connection dbcon = Database.initiateConnection();
+final class UniPost {
+    private static final String WELCOME = "Welcome to UniPost, the first "
+     + "application designed for University students, by University students. "
+     + "Using this app, you can discuss issues concerning your University "
+     + "and try finding excellent solutions with the other users.";
+    private static Scanner in = new Scanner(System.in);
+
+    /**
+     * This is a utility class and therefore, it is not
+     * supposed to have a constructor.
+     */
+    private UniPost() {
+
+    }
+    public static void main(final String[] args) {
+        final Connection dbcon = Database.initiateConnection();
         welcomeUser();
         displayLoginSignupPage(dbcon);
         displayWall(dbcon);
     }
-    public static void delay(final long delayDuration) {
+    protected static void delay(final long delayDuration) {
         try {
             Thread.sleep(delayDuration);
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
             System.err.println("The operation was interrupted.");
         }
     }
-    public static void clearConsole() {
+    protected static void clearConsole() {
         final String os = System.getProperty("os.name");
         try {
             if (os.contains("Windows")) {
@@ -31,23 +39,23 @@ public class UniPost {
             } else {
                 Runtime.getRuntime().exec("clear");
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
     }
-    public static void welcomeUser() {
+    protected static void welcomeUser() {
          //Prints welcome message
          clearConsole();
          System.out.println(WELCOME);
-         System.out.println();    
+         System.out.println();
     }
-    public static void displayLoginSignupPage(Connection dbcon) {
+    protected static void displayLoginSignupPage(final Connection dbcon) {
         String ans;
-        
-        boolean flag = false;
+        boolean flag;
         do {
-            System.out.println("Press <S> to sign up to our app "
-            		+ "<L> to log in if you are already registered.");
+            flag = true;
+            System.out.println("Press <S> to sign up to our app or "
+                    + "<L> to log in if you are already registered.");
             ans = in.nextLine();
             /* the answer is converted to lower case,
                 * then checked if it meets the criteria */
@@ -55,41 +63,41 @@ public class UniPost {
                     System.out.println("Wrong answer");
                     delay(500);
                     clearConsole();
-                    flag = true;
+                    flag = false;
             }
-        } while (flag);
+        } while (!flag);
         if (ans.toLowerCase().equals("l")) {
-        	Login l = new Login();
+            final Login l = new Login();
             l.verify(dbcon);
             delay(2500);
         } else {
-        	SignUp s = new SignUp();
-        	s.newUser(dbcon);
-        	try {
-        		System.out.println("Your sign up has been successfully completed."
-                    +"\nYou will now return to the login screen.");
-            	Thread.sleep(4000);
+            final SignUp s = new SignUp();
+            s.newUser(dbcon);
+            try {
+                System.out.println("Your sign up has been successfully completed."
+                    + "\nYou will now return to the login screen.");
+                Thread.sleep(4000);
                 clearConsole();
                 displayLoginSignupPage(dbcon);
-            } catch (InterruptedException e) {
+            } catch (final InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
-    public static void displayWall(Connection dbcon) {
+    protected static void displayWall(final Connection dbcon) {
         boolean flag = false;
         do {
             System.out.println("Press <C> to create a new Post");
             System.out.println("Press <V> to view the latest Posts");
             System.out.println("Press <L> to logout and return to main screen");
             System.out.println("Press <E> to exit the programm");
-            String ans = in.nextLine();
-            
+            final String ans = in.nextLine();
+
             if (ans.toLowerCase().equals("c")) {
                 flag = true;
                 clearConsole();
                 System.out.println("Enter your thoughts :");
-                String text = in.nextLine();
+                final String text = in.nextLine();
                 DatabasePost.createPost(dbcon, DatabaseUser.getActiveUser(dbcon), text);
                 System.out.println("Post created succesfully");
             } else if (ans.toLowerCase().equals("v")) {
@@ -109,6 +117,6 @@ public class UniPost {
                 delay(750);
                 clearConsole();
             }
-        } while (flag); 
+        } while (flag);
     }
 }
