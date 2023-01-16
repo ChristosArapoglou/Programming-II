@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public final class UniPost {
     private static final String WELCOME = "Welcome to UniPost, the first "
-     + "application designed for University students, by University students. "
+     + "application designed for University students, by University students. \r\n "
      + "Using this app, you can discuss issues concerning your University "
      + "and try finding excellent solutions with the other users.";
     private static Scanner in = new Scanner(System.in);
