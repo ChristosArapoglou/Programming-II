@@ -9,7 +9,7 @@ import java.sql.Connection;
 /**
  * This class is used to design and format posts made by users.
  */
-class Post {
+public class Post {
     /**
      * Post's creation date in String form.
      */

@@ -2,7 +2,7 @@ package com.dmst.president;
 
 import java.util.Date;
 
-class User {
+public class User {
     private String firstName;
     private String lastName;
     private String username;

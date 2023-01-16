@@ -10,7 +10,7 @@ import java.util.InputMismatchException;
  * where it asks the user if he would like to log in or
  * sign up.
  */
- class LogOut {
+public class LogOut {
     /**
      * This method is designed to help users log out from the
      * app smoothly. After logging out, it asks the user if he

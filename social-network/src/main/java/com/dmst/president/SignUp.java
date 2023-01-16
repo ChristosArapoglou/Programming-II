@@ -13,7 +13,7 @@ import java.sql.Statement;
  * in the database), their sign up is completed and is registered to
  * our database.
  */
-class SignUp {
+public class SignUp {
     /**
      * User's Student Number.
      */

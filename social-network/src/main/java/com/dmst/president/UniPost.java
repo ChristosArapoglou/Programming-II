@@ -3,7 +3,7 @@ package com.dmst.president;
 import java.sql.Connection;
 import java.util.Scanner;
 
-final class UniPost {
+public final class UniPost {
     private static final String WELCOME = "Welcome to UniPost, the first "
      + "application designed for University students, by University students. "
      + "Using this app, you can discuss issues concerning your University "

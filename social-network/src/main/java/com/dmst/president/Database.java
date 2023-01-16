@@ -8,7 +8,7 @@ import java.sql.SQLException;
  * This class is used to initiate a connection with our database.
  * Our database is located in AUEB's Microsoft SQL Server.
  */
-final class Database {
+public final class Database {
     /**
     * This method, given the server's url and our DB's correct
     * credentials, connects our app with the DB.

@@ -13,7 +13,7 @@ import java.sql.Statement;
  * In order for our Java app to communicate with the database, SQL Queries are
  * used through String variables.
  */
-final class DatabaseUser {
+public final class DatabaseUser {
     /**
      * This is a utility class and therefore, it is not
      * supposed to have a constructor.
