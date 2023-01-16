@@ -57,11 +57,16 @@
         </plugin>
 
         <plugin> <!--Spotbugs-->
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>3.1.8</version>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>3.1.8</version>
         </plugin>
         
+        <plugin> <!--Javadoc-->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.4.1</version>
+        </plugin>
         
       </plugins>
 
@@ -170,6 +175,7 @@
               </dependency>
             </dependencies>
           </plugin>
+
      </plugins>
     </pluginManagement>
   </build>

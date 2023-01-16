@@ -13,7 +13,7 @@ import java.util.Scanner;
  * incorrect, the process is repetead until users successfully log in or
  * exit the app.
  */
- class Login {
+ public class Login {
     /**
      * User's Student Number. Used for logging in.
      */
