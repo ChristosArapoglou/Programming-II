@@ -3,10 +3,8 @@ package com.dmst.president;
 import java.util.Date;
 
 /**
- * This class is used to combine and coordinate all the actions of all
- * the other classes in order to make the application executable. Apart from
- * the main method, it includes other methods that help visualize and display
- * the app's output to the user.
+ * This class is used to describe a user and help them
+ * interact properly with other classes.
  */
 public class User {
     /**
