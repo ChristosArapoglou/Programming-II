@@ -3,7 +3,16 @@ package com.dmst.president;
 import java.sql.Connection;
 import java.util.Scanner;
 
+/**
+ * This class is used to combine and coordinate all the actions of all
+ * the other classes in order to make the application executable. Apart from
+ * the main method, it includes other methods that help visualize and display
+ * the app's output to the user.
+ */
 public final class UniPost {
+    /**
+    * A friendly, welcoming message to the user.
+    */
     private static final String WELCOME = "Welcome to UniPost, the first "
      + "application designed for University students, by University students. \r\n "
      + "Using this app, you can discuss issues concerning your University "
@@ -17,12 +26,20 @@ public final class UniPost {
     private UniPost() {
 
     }
+    /**
+     * The main method which is responsible for making the program run
+     * and function properly.
+     */
     public static void main(final String[] args) {
         final Connection dbcon = Database.initiateConnection();
         welcomeUser();
         displayLoginSignupPage(dbcon);
         displayWall(dbcon);
     }
+    /**
+     * This method is used to delay some action in order to give time
+     * to the user to understand what has happenned so far.
+     */
     protected static void delay(final long delayDuration) {
         try {
             Thread.sleep(delayDuration);
@@ -30,6 +47,10 @@ public final class UniPost {
             System.err.println("The operation was interrupted.");
         }
     }
+    /**
+     * This method clears eveything from the command line window, so
+     * as to make the app more visually organised and attractive to the user.
+     */
     protected static void clearConsole() {
         final String os = System.getProperty("os.name");
         try {
@@ -43,12 +64,19 @@ public final class UniPost {
             e.printStackTrace();
         }
     }
+    /**
+     * This method welcomes the user in the application after opening it.
+     */
     protected static void welcomeUser() {
          //Prints welcome message
          clearConsole();
          System.out.println(WELCOME);
          System.out.println();
     }
+    /**
+     * This method is organising the login and sign up display
+     * in order to make it more efficient for the user to use.
+     */
     protected static void displayLoginSignupPage(final Connection dbcon) {
         String ans;
         boolean flag;
@@ -84,6 +112,10 @@ public final class UniPost {
             }
         }
     }
+    /**
+     * This method is organising posts display so the user can read
+     * and interact properly with them, without being visually unattractive.
+     */
     protected static void displayWall(final Connection dbcon) {
         boolean flag = false;
         do {
