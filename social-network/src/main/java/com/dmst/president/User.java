@@ -1,5 +1,7 @@
 package com.dmst.president;
 
+import java.util.Date;
+
 /**
  * This class is used to describe a user and help them
  * interact properly with other classes.
